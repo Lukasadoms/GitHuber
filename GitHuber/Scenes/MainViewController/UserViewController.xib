@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="UserViewController">
+            <connections>
+                <outlet property="FollowersButton" destination="TMx-oJ-SWo" id="J76-nP-0j3"/>
+                <outlet property="followButton" destination="zPw-U1-Hvx" id="XJt-8n-mxM"/>
+                <outlet property="followersButton" destination="TMx-oJ-SWo" id="OXW-Ld-5tS"/>
+                <outlet property="followingButton" destination="ag7-dy-jKt" id="cZq-be-fxt"/>
+                <outlet property="fullNameLabel" destination="auw-37-Mk2" id="G4k-yg-7cS"/>
+                <outlet property="repositoriesButton" destination="izp-mj-XoH" id="vfs-Bd-l6L"/>
+                <outlet property="staredReposButton" destination="1uT-At-POK" id="uzT-Ad-Q3o"/>
+                <outlet property="userImage" destination="IbL-aF-zZf" id="nvd-jX-QuG"/>
+                <outlet property="usernameLabel" destination="Vz2-io-1Iw" id="wBV-kf-Al8"/>
+                <outlet property="view" destination="iN0-l3-epB" id="lBo-Mp-dUd"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="aCj-1r-VKd">
+                    <rect key="frame" x="107" y="324" width="102.5" height="71"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vz2-io-1Iw">
+                            <rect key="frame" x="0.0" y="0.0" width="102.5" height="27.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FullName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auw-37-Mk2">
+                            <rect key="frame" x="0.0" y="50.5" width="102.5" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zPw-U1-Hvx">
+                    <rect key="frame" x="264" y="324" width="100" height="30"/>
+                    <color key="backgroundColor" red="0.30840110780000002" green="0.5618229508" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="17w-1m-Lv8"/>
+                    </constraints>
+                    <state key="normal" title="Follow">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="followButtonTapped:" destination="-1" eventType="touchUpInside" id="57y-eD-zNp"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appLogo" translatesAutoresizingMaskIntoConstraints="NO" id="IbL-aF-zZf">
+                    <rect key="frame" x="107" y="74" width="200" height="200"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="200" id="HkE-df-57H"/>
+                        <constraint firstAttribute="width" constant="200" id="Oqi-Ug-Q8G"/>
+                    </constraints>
+                </imageView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Ead-Zr-5w1">
+                    <rect key="frame" x="132" y="425" width="150" height="387"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMx-oJ-SWo">
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="65.5"/>
+                            <color key="backgroundColor" red="0.0" green="0.55485576390000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Followers">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="followersButtonTapped:" destination="-1" eventType="touchUpInside" id="gzg-NT-alV"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag7-dy-jKt">
+                            <rect key="frame" x="0.0" y="80.5" width="150" height="65.5"/>
+                            <color key="backgroundColor" red="0.0" green="0.55485576390000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Following">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="followingButtonTapped:" destination="-1" eventType="touchUpInside" id="34A-Aq-c6P"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izp-mj-XoH">
+                            <rect key="frame" x="0.0" y="161" width="150" height="65"/>
+                            <color key="backgroundColor" red="0.0" green="0.55485576390000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Repos">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="reposButtonTapped:" destination="-1" eventType="touchUpInside" id="jI8-tb-UfM"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uT-At-POK">
+                            <rect key="frame" x="0.0" y="241" width="150" height="65.5"/>
+                            <color key="backgroundColor" red="0.0" green="0.55485576390000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Starred Repos">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="starredReposTapped:" destination="-1" eventType="touchUpInside" id="ook-7k-h9u"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-FA-u5i">
+                            <rect key="frame" x="0.0" y="321.5" width="150" height="65.5"/>
+                            <color key="backgroundColor" red="0.0" green="0.55485576390000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="Logout">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="logoutButtonTapped:" destination="-1" eventType="touchUpInside" id="7BE-ox-7lf"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="WDn-9W-u00"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="aCj-1r-VKd" firstAttribute="top" secondItem="IbL-aF-zZf" secondAttribute="bottom" constant="50" id="8lz-OU-IW2"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Ead-Zr-5w1" secondAttribute="bottom" constant="50" id="CHe-Pa-cuF"/>
+                <constraint firstItem="aCj-1r-VKd" firstAttribute="leading" secondItem="IbL-aF-zZf" secondAttribute="leading" id="Nj7-i3-G67"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="zPw-U1-Hvx" secondAttribute="trailing" constant="50" id="O7n-0r-t70"/>
+                <constraint firstItem="IbL-aF-zZf" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="Sc1-E8-4Tw"/>
+                <constraint firstItem="Ead-Zr-5w1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Vr8-uY-oOS"/>
+                <constraint firstItem="IbL-aF-zZf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eXX-SK-Avv"/>
+                <constraint firstItem="zPw-U1-Hvx" firstAttribute="top" secondItem="aCj-1r-VKd" secondAttribute="top" id="eYQ-3p-GRR"/>
+                <constraint firstItem="Ead-Zr-5w1" firstAttribute="top" secondItem="aCj-1r-VKd" secondAttribute="bottom" constant="30" id="r1W-F5-Fx6"/>
+            </constraints>
+            <point key="canvasLocation" x="132" y="132"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="appLogo" width="170.66667175292969" height="170.66667175292969"/>
+    </resources>
+</document>

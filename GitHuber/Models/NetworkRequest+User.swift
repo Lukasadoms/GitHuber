@@ -8,6 +8,7 @@
 import Foundation
 
 extension NetworkRequest {
+    
   // MARK: Private Constants
   private static let accessTokenKey = "accessToken"
   private static let refreshTokenKey = "refreshToken"
@@ -16,10 +17,11 @@ extension NetworkRequest {
   // MARK: Properties
   static var accessToken: String? {
     get {
-      UserDefaults.standard.string(forKey: accessTokenKey)
+        keychain.get(accessTokenKey)
     }
     set {
-      UserDefaults.standard.setValue(newValue, forKey: accessTokenKey)
+        guard let accessToken = newValue else { return }
+        keychain.set(accessToken, forKey: accessTokenKey)
     }
   }
 

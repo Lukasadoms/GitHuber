@@ -9,18 +9,9 @@ import Foundation
 import AuthenticationServices
 
 class LoginViewModel: NSObject {
-    let oAuthManager: OAuthManager
-    var isLoading = false
+    private var isLoading = Observable<Bool>(false)
     
-    var onLogin: (() -> Void)?
-    
-    init(oAuthManager: OAuthManager) {
-        self.oAuthManager = oAuthManager
-    }
-    
-    func getLoginURL() -> URL {
-        return oAuthManager.getAuthPageUrl()
-    }
+    var onLogin: ((_ user: User) -> Void)?
     
     func loginUser() {
         guard let signInURL =
@@ -51,14 +42,14 @@ class LoginViewModel: NSObject {
             return
           }
 
-          self?.isLoading = true
+            self?.isLoading.value = true
           networkRequest.start(responseType: String.self) { result in
             switch result {
             case .success:
-              self?.getUser()
+              self?.getLoggedInUser()
             case .failure(let error):
               print("Failed to exchange access code for tokens: \(error)")
-              self?.isLoading = false
+                self?.isLoading.value = false
             }
           }
         }
@@ -72,26 +63,25 @@ class LoginViewModel: NSObject {
     }
     
     func appeared() {
-      // Try to get the user in case the tokens are already stored on this device
-      getUser()
+      getLoggedInUser()
     }
     
-    private func getUser() {
-      isLoading = true
+    private func getLoggedInUser() {
+        isLoading.value = true
 
       NetworkRequest
         .RequestType
-        .getUser
+        .getLoggedInUser
         .networkRequest()?
         .start(responseType: User.self) { [weak self] result in
           switch result {
-          case .success(let user):
-            print("success, token: \(NetworkRequest.accessToken ?? "a") \(user)")
-            self?.onLogin?()
+          case .success(let response):
+            print("success, user: \(response.object.login)")
+            self?.onLogin?(response.object)
           case .failure(let error):
             print("Failed to get user, or there is no valid/active session: \(error.localizedDescription)")
           }
-          self?.isLoading = false
+            self?.isLoading.value = false
         }
     }
 }

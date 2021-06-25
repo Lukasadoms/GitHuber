@@ -10,7 +10,7 @@ class LoginViewController: UIViewController {
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        bindViewModel()
+        
     }
     
     required init?(coder: NSCoder) {
@@ -19,12 +19,16 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindViewModel()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     func bindViewModel() {
-        viewModel.onLogin = {
-            self.coordinator?.startMainViewController()
+        viewModel.onLogin = { user in
+            self.coordinator?.startUserViewController(user: user)
         }
         viewModel.appeared()
     }

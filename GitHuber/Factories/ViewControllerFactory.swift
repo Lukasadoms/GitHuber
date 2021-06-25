@@ -4,19 +4,26 @@ import Foundation
 protocol ViewControllersFactory {
 
     func makeLoginViewController() -> LoginViewController
-    func makeMainViewController() -> MainViewController
+    func makeUserViewController(user: User) -> UserViewController
+    func makeUserListViewController(user: User, type: String) -> UserListViewController
 }
 
 extension DependencyContainer: ViewControllersFactory {
-
+    func makeUserListViewController(user: User, type: String) -> UserListViewController {
+        let viewModel = UserListViewModel(user: user, type: type)
+        let userListViewController = UserListViewController(viewModel: viewModel)
+        return userListViewController
+    }
+    
     func makeLoginViewController() -> LoginViewController {
-        let viewModel = LoginViewModel(oAuthManager: oAuthManager)
+        let viewModel = LoginViewModel()
         let loginViewController = LoginViewController(viewModel: viewModel)
         return loginViewController
     }
     
-    func makeMainViewController() -> MainViewController {
-        let MainViewController = MainViewController()
-        return MainViewController
+    func makeUserViewController(user: User) -> UserViewController {
+        let viewModel = UserViewModel(user: user, keychain: keychain)
+        let userViewController = UserViewController(viewModel: viewModel)
+        return userViewController
     }
 }
