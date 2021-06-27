@@ -17,12 +17,13 @@ struct NetworkRequest {
         case sessionExpired
     }
     
-    enum RequestType: Equatable {
+    enum RequestType {
         case codeExchange(code: String)
         case getRepos(username: String)
         case getLoggedInUser
         case getUser(username: String)
         case signIn
+        case getUserList(username: String, type: UserListViewModel.UserlListType)
         
         func networkRequest() -> NetworkRequest? {
             guard let url = url() else {
@@ -42,6 +43,8 @@ struct NetworkRequest {
             case .signIn:
                 return .get
             case .getUser:
+                return .get
+            case .getUserList:
                 return .get
             }
         }
@@ -66,6 +69,8 @@ struct NetworkRequest {
                     URLQueryItem(name: "client_id", value: NetworkRequest.clientID)
                 ]
                 return urlComponents(host: "github.com", path: "/login/oauth/authorize", queryItems: queryItems).url
+            case .getUserList(let username, let type):
+                return urlComponents(path: "/users/\(username)/\(type.rawValue)", queryItems: nil).url
             }
         }
         
@@ -142,9 +147,12 @@ struct NetworkRequest {
                         }
                         else {
                             NetworkRequest.username = user.login
-                            completionHandler(.success((response, object)))
+                            
                         }
+                    } else {
+                        completionHandler(.success((response, object)))
                     }
+                    
                 }
                 return
             } else {

@@ -14,6 +14,7 @@
                 <outlet property="followersButton" destination="TMx-oJ-SWo" id="OXW-Ld-5tS"/>
                 <outlet property="followingButton" destination="ag7-dy-jKt" id="cZq-be-fxt"/>
                 <outlet property="fullNameLabel" destination="auw-37-Mk2" id="G4k-yg-7cS"/>
+                <outlet property="logoutButton" destination="vwv-FA-u5i" id="wX9-bJ-RBg"/>
                 <outlet property="repositoriesButton" destination="izp-mj-XoH" id="vfs-Bd-l6L"/>
                 <outlet property="staredReposButton" destination="1uT-At-POK" id="uzT-Ad-Q3o"/>
                 <outlet property="userImage" destination="IbL-aF-zZf" id="nvd-jX-QuG"/>
@@ -29,13 +30,13 @@
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="aCj-1r-VKd">
                     <rect key="frame" x="107" y="324" width="102.5" height="71"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vz2-io-1Iw">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Vz2-io-1Iw">
                             <rect key="frame" x="0.0" y="0.0" width="102.5" height="27.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FullName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="auw-37-Mk2">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FullName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="auw-37-Mk2">
                             <rect key="frame" x="0.0" y="50.5" width="102.5" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -67,7 +68,7 @@
                     <rect key="frame" x="132" y="425" width="150" height="387"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TMx-oJ-SWo">
-                            <rect key="frame" x="0.0" y="0.0" width="150" height="65.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="85.5"/>
                             <color key="backgroundColor" red="0.0" green="0.55485576390000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Followers">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -77,7 +78,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ag7-dy-jKt">
-                            <rect key="frame" x="0.0" y="80.5" width="150" height="65.5"/>
+                            <rect key="frame" x="0.0" y="100.5" width="150" height="85.5"/>
                             <color key="backgroundColor" red="0.0" green="0.55485576390000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Following">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -87,7 +88,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="izp-mj-XoH">
-                            <rect key="frame" x="0.0" y="161" width="150" height="65"/>
+                            <rect key="frame" x="0.0" y="201" width="150" height="85.5"/>
                             <color key="backgroundColor" red="0.0" green="0.55485576390000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Repos">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -97,7 +98,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uT-At-POK">
-                            <rect key="frame" x="0.0" y="241" width="150" height="65.5"/>
+                            <rect key="frame" x="0.0" y="301.5" width="150" height="85.5"/>
                             <color key="backgroundColor" red="0.0" green="0.55485576390000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Starred Repos">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -106,8 +107,8 @@
                                 <action selector="starredReposTapped:" destination="-1" eventType="touchUpInside" id="ook-7k-h9u"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-FA-u5i">
-                            <rect key="frame" x="0.0" y="321.5" width="150" height="65.5"/>
+                        <button hidden="YES" alpha="0.80000000000000004" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vwv-FA-u5i">
+                            <rect key="frame" x="0.0" y="387" width="150" height="0.0"/>
                             <color key="backgroundColor" red="0.0" green="0.55485576390000002" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <state key="normal" title="Logout">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -123,7 +124,7 @@
                 </stackView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="aCj-1r-VKd" firstAttribute="top" secondItem="IbL-aF-zZf" secondAttribute="bottom" constant="50" id="8lz-OU-IW2"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Ead-Zr-5w1" secondAttribute="bottom" constant="50" id="CHe-Pa-cuF"/>
@@ -133,6 +134,7 @@
                 <constraint firstItem="Ead-Zr-5w1" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Vr8-uY-oOS"/>
                 <constraint firstItem="IbL-aF-zZf" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="eXX-SK-Avv"/>
                 <constraint firstItem="zPw-U1-Hvx" firstAttribute="top" secondItem="aCj-1r-VKd" secondAttribute="top" id="eYQ-3p-GRR"/>
+                <constraint firstItem="zPw-U1-Hvx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Vz2-io-1Iw" secondAttribute="trailing" constant="5" id="ita-y2-Bga"/>
                 <constraint firstItem="Ead-Zr-5w1" firstAttribute="top" secondItem="aCj-1r-VKd" secondAttribute="bottom" constant="30" id="r1W-F5-Fx6"/>
             </constraints>
             <point key="canvasLocation" x="132" y="132"/>

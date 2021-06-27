@@ -32,6 +32,15 @@
 		C9486B42268602510067F319 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B41268602510067F319 /* UserListViewController.swift */; };
 		C9486B44268602700067F319 /* UserListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9486B43268602700067F319 /* UserListViewController.xib */; };
 		C9486B46268603EA0067F319 /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B45268603EA0067F319 /* UserListViewModel.swift */; };
+		C9486B48268734F40067F319 /* UserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9486B47268734F40067F319 /* UserListCell.xib */; };
+		C9486B4A2687352A0067F319 /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B492687352A0067F319 /* UserListCell.swift */; };
+		C9486B4C268737420067F319 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B4B268737420067F319 /* BaseViewController.swift */; };
+		C9486B4E268756C30067F319 /* UserListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B4D268756C30067F319 /* UserListCellModel.swift */; };
+		C9486B5126875C5B0067F319 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B5026875C5B0067F319 /* LoadingScreen.swift */; };
+		C9486B54268777CA0067F319 /* RepositoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B53268777CA0067F319 /* RepositoryListViewController.swift */; };
+		C9486B56268777D60067F319 /* RepositoryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9486B55268777D60067F319 /* RepositoryListViewController.xib */; };
+		C9486B59268778CA0067F319 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B58268778CA0067F319 /* RepositoryViewController.swift */; };
+		C9486B5B268778EE0067F319 /* RepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9486B5A268778EE0067F319 /* RepositoryViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,6 +92,15 @@
 		C9486B41268602510067F319 /* UserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewController.swift; sourceTree = "<group>"; };
 		C9486B43268602700067F319 /* UserListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserListViewController.xib; sourceTree = "<group>"; };
 		C9486B45268603EA0067F319 /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
+		C9486B47268734F40067F319 /* UserListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserListCell.xib; sourceTree = "<group>"; };
+		C9486B492687352A0067F319 /* UserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
+		C9486B4B268737420067F319 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		C9486B4D268756C30067F319 /* UserListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCellModel.swift; sourceTree = "<group>"; };
+		C9486B5026875C5B0067F319 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		C9486B53268777CA0067F319 /* RepositoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewController.swift; sourceTree = "<group>"; };
+		C9486B55268777D60067F319 /* RepositoryListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryListViewController.xib; sourceTree = "<group>"; };
+		C9486B58268778CA0067F319 /* RepositoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
+		C9486B5A268778EE0067F319 /* RepositoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +152,7 @@
 		C9164F6E26846C6D0085CFF8 /* GitHuber */ = {
 			isa = PBXGroup;
 			children = (
+				C9486B4F26875C440067F319 /* extensions */,
 				C9164FC12684A4AA0085CFF8 /* Models */,
 				C9164FB9268489400085CFF8 /* Managers */,
 				C9164FB82684891F0085CFF8 /* Factories */,
@@ -179,8 +198,10 @@
 		C9164FAF268474290085CFF8 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				C9486B572687784D0067F319 /* Repository */,
+				C9486B52268777B60067F319 /* RepositoryList */,
 				C9486B40268601E30067F319 /* UserList */,
-				C9164FBA2684926F0085CFF8 /* MainViewController */,
+				C9164FBA2684926F0085CFF8 /* User */,
 				C9164FB0268474370085CFF8 /* Login */,
 			);
 			path = Scenes;
@@ -201,8 +222,10 @@
 			children = (
 				C9164FB6268485140085CFF8 /* LoginViewModel.swift */,
 				C9486B3C2685D20D0067F319 /* UserViewModel.swift */,
-				C9486B3E2685E7970067F319 /* Observable.swift */,
 				C9486B45268603EA0067F319 /* UserListViewModel.swift */,
+				C9486B3E2685E7970067F319 /* Observable.swift */,
+				C9486B4B268737420067F319 /* BaseViewController.swift */,
+				C9486B4D268756C30067F319 /* UserListCellModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -223,13 +246,13 @@
 			path = Managers;
 			sourceTree = "<group>";
 		};
-		C9164FBA2684926F0085CFF8 /* MainViewController */ = {
+		C9164FBA2684926F0085CFF8 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				C9164FBB268492860085CFF8 /* UserViewController.swift */,
 				C9164FBD268492950085CFF8 /* UserViewController.xib */,
 			);
-			path = MainViewController;
+			path = User;
 			sourceTree = "<group>";
 		};
 		C9164FC12684A4AA0085CFF8 /* Models */ = {
@@ -248,8 +271,36 @@
 			children = (
 				C9486B41268602510067F319 /* UserListViewController.swift */,
 				C9486B43268602700067F319 /* UserListViewController.xib */,
+				C9486B47268734F40067F319 /* UserListCell.xib */,
+				C9486B492687352A0067F319 /* UserListCell.swift */,
 			);
 			path = UserList;
+			sourceTree = "<group>";
+		};
+		C9486B4F26875C440067F319 /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C9486B5026875C5B0067F319 /* LoadingScreen.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
+		C9486B52268777B60067F319 /* RepositoryList */ = {
+			isa = PBXGroup;
+			children = (
+				C9486B53268777CA0067F319 /* RepositoryListViewController.swift */,
+				C9486B55268777D60067F319 /* RepositoryListViewController.xib */,
+			);
+			path = RepositoryList;
+			sourceTree = "<group>";
+		};
+		C9486B572687784D0067F319 /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				C9486B58268778CA0067F319 /* RepositoryViewController.swift */,
+				C9486B5A268778EE0067F319 /* RepositoryViewController.xib */,
+			);
+			path = Repository;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -355,10 +406,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9486B48268734F40067F319 /* UserListCell.xib in Resources */,
 				C9164F7F26846C6F0085CFF8 /* LaunchScreen.storyboard in Resources */,
 				C9164F7C26846C6F0085CFF8 /* Assets.xcassets in Resources */,
 				C9164FA526846CF70085CFF8 /* LoginViewController.xib in Resources */,
+				C9486B5B268778EE0067F319 /* RepositoryViewController.xib in Resources */,
 				C9164FBE268492950085CFF8 /* UserViewController.xib in Resources */,
+				C9486B56268777D60067F319 /* RepositoryListViewController.xib in Resources */,
 				C9486B44268602700067F319 /* UserListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -384,20 +438,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9486B4A2687352A0067F319 /* UserListCell.swift in Sources */,
 				C9486B3F2685E7970067F319 /* Observable.swift in Sources */,
+				C9486B4E268756C30067F319 /* UserListCellModel.swift in Sources */,
 				C9164FC02684A33E0085CFF8 /* NetworkRequest.swift in Sources */,
 				C9164FA72684710A0085CFF8 /* DependancyContainer.swift in Sources */,
 				C9486B3B2685C0440067F319 /* Repository.swift in Sources */,
+				C9486B4C268737420067F319 /* BaseViewController.swift in Sources */,
 				C9164FBC268492860085CFF8 /* UserViewController.swift in Sources */,
 				C9486B42268602510067F319 /* UserListViewController.swift in Sources */,
 				C9164FAC268472340085CFF8 /* MainCoordinator.swift in Sources */,
 				C9164FA326846CE20085CFF8 /* LoginViewController.swift in Sources */,
 				C9164F7026846C6D0085CFF8 /* AppDelegate.swift in Sources */,
+				C9486B5126875C5B0067F319 /* LoadingScreen.swift in Sources */,
 				C9164FC52684AC9B0085CFF8 /* User.swift in Sources */,
 				C9486B3D2685D20D0067F319 /* UserViewModel.swift in Sources */,
 				C9164FA9268471840085CFF8 /* KeyChainSwift.swift in Sources */,
+				C9486B59268778CA0067F319 /* RepositoryViewController.swift in Sources */,
 				C9164FAE2684726F0085CFF8 /* ViewControllerFactory.swift in Sources */,
 				C9486B46268603EA0067F319 /* UserListViewModel.swift in Sources */,
+				C9486B54268777CA0067F319 /* RepositoryListViewController.swift in Sources */,
 				C9164F7226846C6D0085CFF8 /* SceneDelegate.swift in Sources */,
 				C9164FB7268485140085CFF8 /* LoginViewModel.swift in Sources */,
 				C9164F7A26846C6D0085CFF8 /* GitHuber.xcdatamodeld in Sources */,

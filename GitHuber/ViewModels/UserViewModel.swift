@@ -7,8 +7,8 @@
 
 import UIKit
 
-class UserViewModel {
-    private var isLoading = Observable<Bool>(false)
+class UserViewModel: BaseViewModel {
+    var isLoading = Observable<Bool>(false)
     var user: User
     private let keychain: KeychainSwift
     var observableUser = Observable<User?>(nil)
@@ -19,13 +19,19 @@ class UserViewModel {
         self.user = user
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func start() {
+        if user.login != NetworkRequest.username {
+            getUser(username: user.login)
+        }
         observableUser.value = user
-        guard let observableUser = observableUser.value else { return }
-        getRepositories(username: observableUser.login)
-        print(observableUser.login)
-        guard let url = URL(string: observableUser.userAvatar) else { return }
+        getRepositories(username: user.login)
+        guard let url = URL(string: user.userAvatar) else { return }
         downloadImage(from: url)
+        
     }
     
     private func getRepositories(username: String) {
@@ -36,26 +42,43 @@ class UserViewModel {
             .getRepos(username: username)
             .networkRequest()?
             .start(responseType: [Repository].self) { [weak self] result in
+
+                self?.isLoading.value = false
                 switch result {
                 case .success(let response):
                     print(response)
                 case .failure(let error):
                     print("failed to get repositories, error: \(error)")
                 }
+                
+            }
+    }
+    
+    private func getUser(username: String) {
+        isLoading.value = true
+        
+        NetworkRequest
+            .RequestType
+            .getUser(username: username)
+            .networkRequest()?
+            .start(responseType: User.self) { [weak self] result in
                 self?.isLoading.value = false
+                switch result {
+                case .success(let response):
+                    print("success, user: \(response.object.login)")
+                    self?.observableUser.value = response.object
+                case .failure(let error):
+                    print("Failed to get user, or there is no valid/active session: \(error.localizedDescription)")
+                }
             }
     }
     
     func downloadImage(from url: URL) {
-        print("Download Started")
         getData(from: url) { data, response, error in
             guard let data = data, error == nil else { return }
-            print(response?.suggestedFilename ?? url.lastPathComponent)
-            print("Download Finished")
-            // always update the UI from the main thread
-            DispatchQueue.main.async() { [weak self] in
-                guard let image = UIImage(data: data) else { return }
-                self?.userAvatar.value = image
+            guard let userImage = UIImage(data: data) else { return }
+            DispatchQueue.main.async {
+                self.userAvatar.value = userImage
             }
         }
     }

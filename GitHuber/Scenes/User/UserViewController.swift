@@ -10,7 +10,6 @@ import UIKit
 class UserViewController: UIViewController {
     
     private let viewModel: UserViewModel
-    
     weak var coordinator: MainCoordinator?
     
     @IBOutlet weak var userImage: UIImageView!
@@ -21,6 +20,7 @@ class UserViewController: UIViewController {
     @IBOutlet weak var followingButton: UIButton!
     @IBOutlet weak var repositoriesButton: UIButton!
     @IBOutlet weak var staredReposButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
     
     init(viewModel: UserViewModel) {
         self.viewModel = viewModel
@@ -41,33 +41,47 @@ class UserViewController: UIViewController {
     
     func bindViewModel() {
         viewModel.userAvatar.bind { userAvatar in
-            self.userImage.image = userAvatar
+            self.userImage.image = userAvatar            
         }
         
         viewModel.observableUser.bind { user in
-            guard let user = user else { return }
-            self.followersButton.setTitle("Followers: \(user.followers)", for: .normal)
-            self.followingButton.setTitle("Following: \(user.following)", for: .normal)
-            self.repositoriesButton.setTitle("Repos: \(user.repositories)", for: .normal)
+            guard
+                let user = user,
+                let followers = user.followers,
+                let following = user.following,
+                let repositories = user.repositories
+            else { return }
+            self.followersButton.setTitle("Followers: \(followers)", for: .normal)
+            self.followingButton.setTitle("Following: \(following)", for: .normal)
+            self.repositoriesButton.setTitle("Repos: \(repositories)", for: .normal)
             self.usernameLabel.text = user.login
             self.fullNameLabel.text = user.name
+        }
+        
+        viewModel.isLoading.bind { isLoading in
+            if isLoading {
+                self.view.showBlurLoader()
+            }
+            else {
+                self.view.removeBluerLoader()
+            }
         }
     }
     
     func setupView() {
+        
         if viewModel.user.login == NetworkRequest.username {
             navigationItem.hidesBackButton = true
             followButton.isHidden = true
+            configureNavigationBar()
+            logoutButton.isHidden = false
         }
-        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.barTintColor = .black
-        configureNavigationBar()
+        
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
         userImage.clipsToBounds = true
     }
     
     func configureNavigationBar() {
-        
         let img = UIImage(systemName: "gear")!
         let imgWidth = img.size.width
         let imgHeight = img.size.height
@@ -75,6 +89,8 @@ class UserViewController: UIViewController {
         button.setBackgroundImage(img, for: .normal)
         button.addTarget(self, action: #selector(settingsButtonPressed), for: .touchUpInside)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button)
+        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.barTintColor = .darkGray
     }
     
     @objc func settingsButtonPressed() {
@@ -84,14 +100,15 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func followersButtonTapped(_ sender: Any) {
-        coordinator?.startUserListViewController(user: viewModel.user, type: "followers")
+        coordinator?.startUserListViewController(user: viewModel.user, type: .followers)
     }
     
     @IBAction func followingButtonTapped(_ sender: Any) {
-        coordinator?.startUserListViewController(user: viewModel.user, type: "following")
+        coordinator?.startUserListViewController(user: viewModel.user, type: .following)
     }
     
     @IBAction func reposButtonTapped(_ sender: Any) {
+        
     }
     
     @IBAction func starredReposTapped(_ sender: Any) {

@@ -10,7 +10,6 @@ class LoginViewController: UIViewController {
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -27,10 +26,19 @@ class LoginViewController: UIViewController {
     }
     
     func bindViewModel() {
-        viewModel.onLogin = { user in
-            self.coordinator?.startUserViewController(user: user)
-        }
+        
         viewModel.appeared()
+        viewModel.isLoading.bind { [weak self] isLoading in
+            if isLoading {
+                self?.view.showBlurLoader()
+            }
+            else {
+                self?.view.removeBluerLoader()
+            }
+        }
+        viewModel.onLogin = { [weak self] user in
+            self?.coordinator?.startUserViewController(user: user)
+        }
     }
     
     @IBAction func loginButtonTapped(_ sender: UIButton) {

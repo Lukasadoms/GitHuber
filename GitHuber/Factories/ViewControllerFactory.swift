@@ -5,11 +5,11 @@ protocol ViewControllersFactory {
 
     func makeLoginViewController() -> LoginViewController
     func makeUserViewController(user: User) -> UserViewController
-    func makeUserListViewController(user: User, type: String) -> UserListViewController
+    func makeUserListViewController(user: User, type: UserListViewModel.UserlListType) -> UserListViewController
 }
 
 extension DependencyContainer: ViewControllersFactory {
-    func makeUserListViewController(user: User, type: String) -> UserListViewController {
+    func makeUserListViewController(user: User, type: UserListViewModel.UserlListType) -> UserListViewController {
         let viewModel = UserListViewModel(user: user, type: type)
         let userListViewController = UserListViewController(viewModel: viewModel)
         return userListViewController
