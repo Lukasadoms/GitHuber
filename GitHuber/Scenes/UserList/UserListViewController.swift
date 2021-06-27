@@ -61,7 +61,7 @@ extension UserListViewController: UITableViewDataSource {
         }
 
         let user = viewModel.userList.value[indexPath.row]
-        userListCell.configureCell(user: user, username: user.login, followersCount: user.followers)
+        userListCell.configureCell(user: user)
 
         return userListCell
     }

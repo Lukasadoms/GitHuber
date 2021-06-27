@@ -8,10 +8,10 @@
 import Foundation
 
 struct Repository: Decodable {
-    let name: String
-    let stars: Int?
+    let name: String?
+    let stars: Int
     let owner: Owner
-    let language: String
+    let language: String?
     
     enum CodingKeys: String, CodingKey {
         case stars = "stargazers_count"
@@ -19,7 +19,7 @@ struct Repository: Decodable {
     }
 }
 
-struct Owner: Codable {
+struct Owner: Decodable {
     var login: String
     
     enum CodingKeys: String, CodingKey {

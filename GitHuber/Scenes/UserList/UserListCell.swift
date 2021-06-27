@@ -13,15 +13,17 @@ final class UserListCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
     
-    func configureCell(user: User, username: String, followersCount: Int?) {
+    let userInfo = User?(nil)
+    
+    func configureCell(user: User) {
         guard let url = URL(string: user.userAvatar) else { return }
         downloadImage(from: url)
-        getUserList(user: user)
+        getUserInfo(user: user)
         userImageView.layer.cornerRadius = userImageView.frame.size.width / 2
         userImageView.clipsToBounds = true
-        userNameLabel.text = username
-        guard let followersCount = followersCount else { return }
-        followersLabel.text = "Followers: \(followersCount)"
+        guard let userInfo = userInfo else { return }
+        userNameLabel.text = userInfo.login
+        followersLabel.text = "Followers: \(userInfo.followers ?? 0)"
     }
     
     private func downloadImage(from url: URL) {
@@ -43,15 +45,16 @@ final class UserListCell: UITableViewCell {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
-    private func getUserList(user: User) {
+    private func getUserInfo(user: User) {
         NetworkRequest
             .RequestType
-            .getUserList(username: user.login, type: .followers)
+            .getUser(username: user.login)
             .networkRequest()?
-            .start(responseType: [User].self) { [weak self] result in
+            .start(responseType: User.self) { [weak self] result in
                 switch result {
                 case .success(let response):
-                    self?.followersLabel.text = "Followers: \(response.object.count)"
+                    self?.followersLabel.text = "Followers: \(response.object.followers ?? 0 )"
+                    
                     print(response)
                 case .failure(let error):
                     print("failed to get repositories, error: \(error)")

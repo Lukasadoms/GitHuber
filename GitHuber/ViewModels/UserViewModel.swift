@@ -13,6 +13,7 @@ class UserViewModel: BaseViewModel {
     private let keychain: KeychainSwift
     var observableUser = Observable<User?>(nil)
     var userAvatar = Observable<UIImage?>(nil)
+    var repositories = [Repository]([])
     
     init(user: User, keychain: KeychainSwift) {
         self.keychain = keychain
@@ -34,6 +35,11 @@ class UserViewModel: BaseViewModel {
         
     }
     
+    func logoutUser() {
+        keychain.delete("accessToken")
+        keychain.delete("username")
+    }
+    
     private func getRepositories(username: String) {
         isLoading.value = true
         
@@ -46,11 +52,10 @@ class UserViewModel: BaseViewModel {
                 self?.isLoading.value = false
                 switch result {
                 case .success(let response):
-                    print(response)
+                    self?.repositories = response.object
                 case .failure(let error):
                     print("failed to get repositories, error: \(error)")
                 }
-                
             }
     }
     

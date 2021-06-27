@@ -108,13 +108,14 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func reposButtonTapped(_ sender: Any) {
-        
+        coordinator?.startRepositoryListViewController(repositories: viewModel.repositories)
     }
     
     @IBAction func starredReposTapped(_ sender: Any) {
     }
     
     @IBAction func logoutButtonTapped(_ sender: Any) {
+        viewModel.logoutUser()
         coordinator?.logout()
     }
 }

@@ -37,7 +37,7 @@ class LoginViewModel: NSObject {
                 return
             }
             
-            self?.isLoading.value = true
+            
             networkRequest.start(responseType: String.self) { result in
                 switch result {
                 case .success(let data):
@@ -71,17 +71,20 @@ class LoginViewModel: NSObject {
             .getLoggedInUser
             .networkRequest()?
             .start(responseType: User.self) { [weak self] result in
-                self?.isLoading.value = false
+                
                 switch result {
                 case .success(let response):
-                    print("success, user: \(response.object.login)")
-
+                    print("success, user: \(response.object)")
+                    self?.isLoading.value = false
                     self?.onLogin?(response.object)
                 case .failure(let error):
                     print("Failed to get user, or there is no valid/active session: \(error.localizedDescription)")
+                    self?.isLoading.value = false
                 }
             }
     }
+    
+    
 }
 
 extension LoginViewModel: ASWebAuthenticationPresentationContextProviding {

@@ -105,6 +105,7 @@ struct NetworkRequest {
         if let accessToken = NetworkRequest.accessToken {
             request.setValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
         }
+        print("\(NetworkRequest.accessToken)")
         let session = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let response = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
@@ -142,13 +143,10 @@ struct NetworkRequest {
             } else if let object = try? JSONDecoder().decode(T.self, from: data) {
                 DispatchQueue.main.async {
                     if let user = object as? User {
-                        if NetworkRequest.username != nil {
-                            completionHandler(.success((response, object)))
-                        }
-                        else {
+                        if NetworkRequest.username == nil {
                             NetworkRequest.username = user.login
-                            
                         }
+                        completionHandler(.success((response, object)))
                     } else {
                         completionHandler(.success((response, object)))
                     }

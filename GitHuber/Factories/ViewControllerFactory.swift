@@ -6,6 +6,7 @@ protocol ViewControllersFactory {
     func makeLoginViewController() -> LoginViewController
     func makeUserViewController(user: User) -> UserViewController
     func makeUserListViewController(user: User, type: UserListViewModel.UserlListType) -> UserListViewController
+    func makeRepositoryListViewController(repositories: [Repository]) -> RepositoryListViewController
 }
 
 extension DependencyContainer: ViewControllersFactory {
@@ -25,5 +26,11 @@ extension DependencyContainer: ViewControllersFactory {
         let viewModel = UserViewModel(user: user, keychain: keychain)
         let userViewController = UserViewController(viewModel: viewModel)
         return userViewController
+    }
+    
+    func makeRepositoryListViewController(repositories: [Repository]) -> RepositoryListViewController {
+        let viewModel = RepositoryListViewModel(repositories: repositories)
+        let repositoryViewController = RepositoryListViewController(viewModel: viewModel)
+        return repositoryViewController
     }
 }

@@ -41,6 +41,9 @@
 		C9486B56268777D60067F319 /* RepositoryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9486B55268777D60067F319 /* RepositoryListViewController.xib */; };
 		C9486B59268778CA0067F319 /* RepositoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B58268778CA0067F319 /* RepositoryViewController.swift */; };
 		C9486B5B268778EE0067F319 /* RepositoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9486B5A268778EE0067F319 /* RepositoryViewController.xib */; };
+		C9486B5D268896EE0067F319 /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B5C268896EE0067F319 /* RepositoryListViewModel.swift */; };
+		C9486B5F26889D3E0067F319 /* RepositoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B5E26889D3E0067F319 /* RepositoryListCell.swift */; };
+		C9486B6126889D4E0067F319 /* RepositoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9486B6026889D4E0067F319 /* RepositoryListCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,6 +104,9 @@
 		C9486B55268777D60067F319 /* RepositoryListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryListViewController.xib; sourceTree = "<group>"; };
 		C9486B58268778CA0067F319 /* RepositoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryViewController.swift; sourceTree = "<group>"; };
 		C9486B5A268778EE0067F319 /* RepositoryViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryViewController.xib; sourceTree = "<group>"; };
+		C9486B5C268896EE0067F319 /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
+		C9486B5E26889D3E0067F319 /* RepositoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListCell.swift; sourceTree = "<group>"; };
+		C9486B6026889D4E0067F319 /* RepositoryListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryListCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +232,7 @@
 				C9486B3E2685E7970067F319 /* Observable.swift */,
 				C9486B4B268737420067F319 /* BaseViewController.swift */,
 				C9486B4D268756C30067F319 /* UserListCellModel.swift */,
+				C9486B5C268896EE0067F319 /* RepositoryListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -290,6 +297,8 @@
 			children = (
 				C9486B53268777CA0067F319 /* RepositoryListViewController.swift */,
 				C9486B55268777D60067F319 /* RepositoryListViewController.xib */,
+				C9486B5E26889D3E0067F319 /* RepositoryListCell.swift */,
+				C9486B6026889D4E0067F319 /* RepositoryListCell.xib */,
 			);
 			path = RepositoryList;
 			sourceTree = "<group>";
@@ -412,6 +421,7 @@
 				C9164FA526846CF70085CFF8 /* LoginViewController.xib in Resources */,
 				C9486B5B268778EE0067F319 /* RepositoryViewController.xib in Resources */,
 				C9164FBE268492950085CFF8 /* UserViewController.xib in Resources */,
+				C9486B6126889D4E0067F319 /* RepositoryListCell.xib in Resources */,
 				C9486B56268777D60067F319 /* RepositoryListViewController.xib in Resources */,
 				C9486B44268602700067F319 /* UserListViewController.xib in Resources */,
 			);
@@ -445,6 +455,7 @@
 				C9164FA72684710A0085CFF8 /* DependancyContainer.swift in Sources */,
 				C9486B3B2685C0440067F319 /* Repository.swift in Sources */,
 				C9486B4C268737420067F319 /* BaseViewController.swift in Sources */,
+				C9486B5F26889D3E0067F319 /* RepositoryListCell.swift in Sources */,
 				C9164FBC268492860085CFF8 /* UserViewController.swift in Sources */,
 				C9486B42268602510067F319 /* UserListViewController.swift in Sources */,
 				C9164FAC268472340085CFF8 /* MainCoordinator.swift in Sources */,
@@ -452,6 +463,7 @@
 				C9164F7026846C6D0085CFF8 /* AppDelegate.swift in Sources */,
 				C9486B5126875C5B0067F319 /* LoadingScreen.swift in Sources */,
 				C9164FC52684AC9B0085CFF8 /* User.swift in Sources */,
+				C9486B5D268896EE0067F319 /* RepositoryListViewModel.swift in Sources */,
 				C9486B3D2685D20D0067F319 /* UserViewModel.swift in Sources */,
 				C9164FA9268471840085CFF8 /* KeyChainSwift.swift in Sources */,
 				C9486B59268778CA0067F319 /* RepositoryViewController.swift in Sources */,
