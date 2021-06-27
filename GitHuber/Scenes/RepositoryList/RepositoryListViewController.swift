@@ -25,9 +25,15 @@ class RepositoryListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+    }
+    
+    func setupTableView() {
         let cellNib = UINib(nibName: "RepositoryListCell", bundle: nil)
         repositoryListTableView.register(cellNib, forCellReuseIdentifier: "RepositoryListCell")
         repositoryListTableView.dataSource = self
+        repositoryListTableView.delegate = self
+        self.title = "GitHubers List"
     }
 }
 
@@ -50,5 +56,11 @@ extension RepositoryListViewController: UITableViewDataSource {
 
         return repositoryListCell
     }
-    
+}
+
+extension RepositoryListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let repository = viewModel.repositories[indexPath.row]
+        coordinator?.startRepositoryViewController(repository: repository)
+    }
 }

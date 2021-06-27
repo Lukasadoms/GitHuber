@@ -28,7 +28,12 @@ class UserListViewController: UIViewController {
         viewModel.start()
         bindViewModel()
         setupTableView()
+        setupView()
+    }
+    
+    func setupView() {
         navigationController?.setNavigationBarHidden(false, animated: true)
+        self.title = "GitHubers List"
     }
     
     func bindViewModel() {

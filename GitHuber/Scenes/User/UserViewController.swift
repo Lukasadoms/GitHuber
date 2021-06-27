@@ -58,6 +58,10 @@ class UserViewController: UIViewController {
             self.fullNameLabel.text = user.name
         }
         
+        viewModel.starredRepositories.bind { repositories in
+            self.staredReposButton.setTitle("Starred Repos: \(repositories.count)", for: .normal)
+        }
+        
         viewModel.isLoading.bind { isLoading in
             if isLoading {
                 self.view.showBlurLoader()
@@ -76,7 +80,7 @@ class UserViewController: UIViewController {
             configureNavigationBar()
             logoutButton.isHidden = false
         }
-        
+        self.title = "GitHuber"
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
         userImage.clipsToBounds = true
     }
@@ -112,6 +116,7 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func starredReposTapped(_ sender: Any) {
+        coordinator?.startRepositoryListViewController(repositories: viewModel.starredRepositories.value)
     }
     
     @IBAction func logoutButtonTapped(_ sender: Any) {

@@ -40,6 +40,12 @@ class MainCoordinator {
         repositoryListViewController.coordinator = self
         navigationController.pushViewController(repositoryListViewController, animated: true)
     }
+    
+    func startRepositoryViewController(repository: Repository) {
+        let repositoryViewController = viewControllersFactory.makeRepositoryViewController(repository: repository)
+        repositoryViewController.coordinator = self
+        navigationController.pushViewController(repositoryViewController, animated: true)
+    }
 
     func logout() {
         navigationController.popViewController(animated: true)

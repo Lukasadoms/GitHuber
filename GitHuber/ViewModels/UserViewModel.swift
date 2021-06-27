@@ -8,12 +8,14 @@
 import UIKit
 
 class UserViewModel: BaseViewModel {
+    
     var isLoading = Observable<Bool>(false)
     var user: User
     private let keychain: KeychainSwift
     var observableUser = Observable<User?>(nil)
     var userAvatar = Observable<UIImage?>(nil)
     var repositories = [Repository]([])
+    var starredRepositories = Observable<[Repository]>([])
     
     init(user: User, keychain: KeychainSwift) {
         self.keychain = keychain
@@ -25,14 +27,12 @@ class UserViewModel: BaseViewModel {
     }
     
     func start() {
-        if user.login != NetworkRequest.username {
-            getUser(username: user.login)
-        }
+        getUser(username: user.login)
         observableUser.value = user
         getRepositories(username: user.login)
+        getStarredRepositories(username: user.login)
         guard let url = URL(string: user.userAvatar) else { return }
         downloadImage(from: url)
-        
     }
     
     func logoutUser() {
@@ -42,7 +42,6 @@ class UserViewModel: BaseViewModel {
     
     private func getRepositories(username: String) {
         isLoading.value = true
-        
         NetworkRequest
             .RequestType
             .getRepos(username: username)
@@ -59,9 +58,25 @@ class UserViewModel: BaseViewModel {
             }
     }
     
+    private func getStarredRepositories(username: String) {
+        isLoading.value = true
+        NetworkRequest
+            .RequestType
+            .gerStarredRepos(username: username)
+            .networkRequest()?
+            .start(responseType: [Repository].self) { [weak self] result in
+                self?.isLoading.value = false
+                switch result {
+                case .success(let response):
+                    self?.starredRepositories.value = response.object
+                case .failure(let error):
+                    print("failed to get repositories, error: \(error)")
+                }
+            }
+    }
+    
     private func getUser(username: String) {
         isLoading.value = true
-        
         NetworkRequest
             .RequestType
             .getUser(username: username)

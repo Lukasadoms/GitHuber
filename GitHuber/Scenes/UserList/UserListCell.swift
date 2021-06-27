@@ -21,9 +21,9 @@ final class UserListCell: UITableViewCell {
         getUserInfo(user: user)
         userImageView.layer.cornerRadius = userImageView.frame.size.width / 2
         userImageView.clipsToBounds = true
-        guard let userInfo = userInfo else { return }
-        userNameLabel.text = userInfo.login
-        followersLabel.text = "Followers: \(userInfo.followers ?? 0)"
+//        guard let userInfo = userInfo else { return }
+//        userNameLabel.text = userInfo.login
+//        followersLabel.text = "Followers: \(userInfo.followers ?? 0)"
     }
     
     private func downloadImage(from url: URL) {
@@ -54,7 +54,7 @@ final class UserListCell: UITableViewCell {
                 switch result {
                 case .success(let response):
                     self?.followersLabel.text = "Followers: \(response.object.followers ?? 0 )"
-                    
+                    self?.userNameLabel.text = response.object.login
                     print(response)
                 case .failure(let error):
                     print("failed to get repositories, error: \(error)")

@@ -44,6 +44,7 @@
 		C9486B5D268896EE0067F319 /* RepositoryListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B5C268896EE0067F319 /* RepositoryListViewModel.swift */; };
 		C9486B5F26889D3E0067F319 /* RepositoryListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B5E26889D3E0067F319 /* RepositoryListCell.swift */; };
 		C9486B6126889D4E0067F319 /* RepositoryListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9486B6026889D4E0067F319 /* RepositoryListCell.xib */; };
+		C9486B632688CFEC0067F319 /* RepositoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B622688CFEC0067F319 /* RepositoryViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		C9486B5C268896EE0067F319 /* RepositoryListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewModel.swift; sourceTree = "<group>"; };
 		C9486B5E26889D3E0067F319 /* RepositoryListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListCell.swift; sourceTree = "<group>"; };
 		C9486B6026889D4E0067F319 /* RepositoryListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryListCell.xib; sourceTree = "<group>"; };
+		C9486B622688CFEC0067F319 /* RepositoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,6 +235,7 @@
 				C9486B4B268737420067F319 /* BaseViewController.swift */,
 				C9486B4D268756C30067F319 /* UserListCellModel.swift */,
 				C9486B5C268896EE0067F319 /* RepositoryListViewModel.swift */,
+				C9486B622688CFEC0067F319 /* RepositoryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -471,6 +474,7 @@
 				C9486B46268603EA0067F319 /* UserListViewModel.swift in Sources */,
 				C9486B54268777CA0067F319 /* RepositoryListViewController.swift in Sources */,
 				C9164F7226846C6D0085CFF8 /* SceneDelegate.swift in Sources */,
+				C9486B632688CFEC0067F319 /* RepositoryViewModel.swift in Sources */,
 				C9164FB7268485140085CFF8 /* LoginViewModel.swift in Sources */,
 				C9164F7A26846C6D0085CFF8 /* GitHuber.xcdatamodeld in Sources */,
 				C9164FC32684A4BE0085CFF8 /* NetworkRequest+User.swift in Sources */,

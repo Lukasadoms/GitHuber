@@ -20,6 +20,7 @@ struct NetworkRequest {
     enum RequestType {
         case codeExchange(code: String)
         case getRepos(username: String)
+        case gerStarredRepos(username:String)
         case getLoggedInUser
         case getUser(username: String)
         case signIn
@@ -46,6 +47,8 @@ struct NetworkRequest {
                 return .get
             case .getUserList:
                 return .get
+            case .gerStarredRepos:
+                return .get
             }
         }
         
@@ -71,6 +74,8 @@ struct NetworkRequest {
                 return urlComponents(host: "github.com", path: "/login/oauth/authorize", queryItems: queryItems).url
             case .getUserList(let username, let type):
                 return urlComponents(path: "/users/\(username)/\(type.rawValue)", queryItems: nil).url
+            case .gerStarredRepos(username: let username):
+                return urlComponents(path: "/users/\(username)/starred", queryItems: nil).url
             }
         }
         
@@ -150,7 +155,6 @@ struct NetworkRequest {
                     } else {
                         completionHandler(.success((response, object)))
                     }
-                    
                 }
                 return
             } else {
