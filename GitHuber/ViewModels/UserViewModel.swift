@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserViewModel: BaseViewModel {
+class UserViewModel {
     
     var isLoading = Observable<Bool>(false)
     var user: User

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,6 +11,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RepositoryViewController" customModule="GitHuber" customModuleProvider="target">
             <connections>
+                <outlet property="contributorsButton" destination="Oze-MV-wmW" id="ybO-1f-HfQ"/>
+                <outlet property="languageLabel" destination="xuf-KK-kRE" id="eLo-L9-FJP"/>
+                <outlet property="numberOfStarsLabel" destination="B5K-hp-AXk" id="ka0-8w-BLD"/>
+                <outlet property="ownerLabel" destination="tju-Od-dOQ" id="WzB-uc-4UM"/>
+                <outlet property="repositoryDescriptionLabel" destination="8Bf-vW-Thd" id="0hi-4Y-Gbf"/>
+                <outlet property="repositoryNameLabel" destination="Lu9-GG-It1" id="cQt-pz-4Pf"/>
+                <outlet property="starButton" destination="3Lj-bA-t28" id="xX0-uR-RXK"/>
                 <outlet property="view" destination="iN0-l3-epB" id="kSL-nE-gHr"/>
             </connections>
         </placeholder>
@@ -17,14 +25,90 @@
         <view contentMode="scaleToFill" id="iN0-l3-epB">
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="redraw" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="53" translatesAutoresizingMaskIntoConstraints="NO" id="01S-aY-S0b">
+                    <rect key="frame" x="30" y="133" width="354" height="699"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tju-Od-dOQ">
+                            <rect key="frame" x="0.0" y="0.0" width="354" height="72.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repository description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bf-vW-Thd">
+                            <rect key="frame" x="0.0" y="125.5" width="354" height="72"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of stars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5K-hp-AXk">
+                            <rect key="frame" x="0.0" y="250.5" width="354" height="72.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuf-KK-kRE">
+                            <rect key="frame" x="0.0" y="376" width="354" height="72.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lj-bA-t28">
+                            <rect key="frame" x="0.0" y="501.5" width="354" height="72"/>
+                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                            <color key="tintColor" systemColor="systemBlueColor"/>
+                            <state key="normal" title="Star this repository">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="starButtonTapped:" destination="-1" eventType="touchUpInside" id="lXe-t0-Cfr"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oze-MV-wmW">
+                            <rect key="frame" x="0.0" y="626.5" width="354" height="72.5"/>
+                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                            <state key="normal" title="Contributors">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="contributorsButtonTapped:" destination="-1" eventType="touchUpInside" id="eIy-Dz-Sfl"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="tju-Od-dOQ" firstAttribute="centerX" secondItem="01S-aY-S0b" secondAttribute="centerX" id="0tb-IO-ZXr"/>
+                        <constraint firstItem="8Bf-vW-Thd" firstAttribute="centerX" secondItem="01S-aY-S0b" secondAttribute="centerX" id="4Cp-M1-cVe"/>
+                        <constraint firstItem="B5K-hp-AXk" firstAttribute="centerX" secondItem="01S-aY-S0b" secondAttribute="centerX" id="KBq-hI-qZw"/>
+                        <constraint firstItem="Oze-MV-wmW" firstAttribute="centerX" secondItem="01S-aY-S0b" secondAttribute="centerX" id="bMv-hI-hGQ"/>
+                        <constraint firstItem="xuf-KK-kRE" firstAttribute="centerX" secondItem="01S-aY-S0b" secondAttribute="centerX" id="pCY-Dn-YBv"/>
+                        <constraint firstItem="3Lj-bA-t28" firstAttribute="centerX" secondItem="01S-aY-S0b" secondAttribute="centerX" id="r1a-sS-CTq"/>
+                    </constraints>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RepositoryName" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lu9-GG-It1">
+                    <rect key="frame" x="30" y="74" width="354" height="29"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="01S-aY-S0b" secondAttribute="bottom" constant="30" id="1Ky-zr-VKe"/>
+                <constraint firstItem="01S-aY-S0b" firstAttribute="top" secondItem="Lu9-GG-It1" secondAttribute="bottom" constant="30" id="9EI-rO-Pzm"/>
+                <constraint firstItem="01S-aY-S0b" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="Mwy-ea-4wl"/>
+                <constraint firstItem="Lu9-GG-It1" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="30" id="YLc-HE-ROG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="01S-aY-S0b" secondAttribute="trailing" constant="30" id="buL-Mr-hSo"/>
+                <constraint firstItem="Lu9-GG-It1" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="mHn-gw-VSu"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Lu9-GG-It1" secondAttribute="trailing" constant="30" id="rjM-7g-CjK"/>
+            </constraints>
             <point key="canvasLocation" x="-74" y="132"/>
         </view>
     </objects>
     <resources>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

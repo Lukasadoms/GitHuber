@@ -25,6 +25,7 @@ struct NetworkRequest {
         case getUser(username: String)
         case signIn
         case getUserList(username: String, type: UserListViewModel.UserlListType)
+        case getRepoContributors(repository: Repository)
         
         func networkRequest() -> NetworkRequest? {
             guard let url = url() else {
@@ -48,6 +49,8 @@ struct NetworkRequest {
             case .getUserList:
                 return .get
             case .gerStarredRepos:
+                return .get
+            case .getRepoContributors:
                 return .get
             }
         }
@@ -76,6 +79,8 @@ struct NetworkRequest {
                 return urlComponents(path: "/users/\(username)/\(type.rawValue)", queryItems: nil).url
             case .gerStarredRepos(username: let username):
                 return urlComponents(path: "/users/\(username)/starred", queryItems: nil).url
+            case .getRepoContributors(let repository):
+                return urlComponents(path: "/repos/\(repository.owner.login)/\(repository.name ?? "")/contributors", queryItems: nil).url
             }
         }
         
@@ -110,7 +115,7 @@ struct NetworkRequest {
         if let accessToken = UserManager.accessToken {
             request.setValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
         }
-        //print("\(UserManager.accessToken)")
+        print("\(UserManager.accessToken)")
         let session = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let response = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {

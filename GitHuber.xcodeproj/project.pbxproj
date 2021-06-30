@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80B234C1268CD2FD00E9CC8A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B234C0268CD2FD00E9CC8A /* BaseViewController.swift */; };
 		C9164F7026846C6D0085CFF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164F6F26846C6D0085CFF8 /* AppDelegate.swift */; };
 		C9164F7226846C6D0085CFF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164F7126846C6D0085CFF8 /* SceneDelegate.swift */; };
 		C9164F7A26846C6D0085CFF8 /* GitHuber.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C9164F7826846C6D0085CFF8 /* GitHuber.xcdatamodeld */; };
@@ -24,7 +25,7 @@
 		C9164FBC268492860085CFF8 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164FBB268492860085CFF8 /* UserViewController.swift */; };
 		C9164FBE268492950085CFF8 /* UserViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9164FBD268492950085CFF8 /* UserViewController.xib */; };
 		C9164FC02684A33E0085CFF8 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164FBF2684A33E0085CFF8 /* NetworkRequest.swift */; };
-		C9164FC32684A4BE0085CFF8 /* NetworkRequest+User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164FC22684A4BE0085CFF8 /* NetworkRequest+User.swift */; };
+		C9164FC32684A4BE0085CFF8 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164FC22684A4BE0085CFF8 /* UserManager.swift */; };
 		C9164FC52684AC9B0085CFF8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164FC42684AC9B0085CFF8 /* User.swift */; };
 		C9486B3B2685C0440067F319 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B3A2685C0440067F319 /* Repository.swift */; };
 		C9486B3D2685D20D0067F319 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B3C2685D20D0067F319 /* UserViewModel.swift */; };
@@ -34,8 +35,6 @@
 		C9486B46268603EA0067F319 /* UserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B45268603EA0067F319 /* UserListViewModel.swift */; };
 		C9486B48268734F40067F319 /* UserListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9486B47268734F40067F319 /* UserListCell.xib */; };
 		C9486B4A2687352A0067F319 /* UserListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B492687352A0067F319 /* UserListCell.swift */; };
-		C9486B4C268737420067F319 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B4B268737420067F319 /* BaseViewController.swift */; };
-		C9486B4E268756C30067F319 /* UserListCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B4D268756C30067F319 /* UserListCellModel.swift */; };
 		C9486B5126875C5B0067F319 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B5026875C5B0067F319 /* LoadingScreen.swift */; };
 		C9486B54268777CA0067F319 /* RepositoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9486B53268777CA0067F319 /* RepositoryListViewController.swift */; };
 		C9486B56268777D60067F319 /* RepositoryListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9486B55268777D60067F319 /* RepositoryListViewController.xib */; };
@@ -66,6 +65,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80B234C0268CD2FD00E9CC8A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C9164F6C26846C6D0085CFF8 /* GitHuber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHuber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9164F6F26846C6D0085CFF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C9164F7126846C6D0085CFF8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -89,7 +89,7 @@
 		C9164FBB268492860085CFF8 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		C9164FBD268492950085CFF8 /* UserViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserViewController.xib; sourceTree = "<group>"; };
 		C9164FBF2684A33E0085CFF8 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
-		C9164FC22684A4BE0085CFF8 /* NetworkRequest+User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRequest+User.swift"; sourceTree = "<group>"; };
+		C9164FC22684A4BE0085CFF8 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
 		C9164FC42684AC9B0085CFF8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C9486B3A2685C0440067F319 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		C9486B3C2685D20D0067F319 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
@@ -99,8 +99,6 @@
 		C9486B45268603EA0067F319 /* UserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListViewModel.swift; sourceTree = "<group>"; };
 		C9486B47268734F40067F319 /* UserListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserListCell.xib; sourceTree = "<group>"; };
 		C9486B492687352A0067F319 /* UserListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCell.swift; sourceTree = "<group>"; };
-		C9486B4B268737420067F319 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		C9486B4D268756C30067F319 /* UserListCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListCellModel.swift; sourceTree = "<group>"; };
 		C9486B5026875C5B0067F319 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		C9486B53268777CA0067F319 /* RepositoryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryListViewController.swift; sourceTree = "<group>"; };
 		C9486B55268777D60067F319 /* RepositoryListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryListViewController.xib; sourceTree = "<group>"; };
@@ -213,6 +211,7 @@
 				C9486B40268601E30067F319 /* UserList */,
 				C9164FBA2684926F0085CFF8 /* User */,
 				C9164FB0268474370085CFF8 /* Login */,
+				80B234C0268CD2FD00E9CC8A /* BaseViewController.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -234,8 +233,6 @@
 				C9486B3C2685D20D0067F319 /* UserViewModel.swift */,
 				C9486B45268603EA0067F319 /* UserListViewModel.swift */,
 				C9486B3E2685E7970067F319 /* Observable.swift */,
-				C9486B4B268737420067F319 /* BaseViewController.swift */,
-				C9486B4D268756C30067F319 /* UserListCellModel.swift */,
 				C9486B5C268896EE0067F319 /* RepositoryListViewModel.swift */,
 				C9486B622688CFEC0067F319 /* RepositoryViewModel.swift */,
 			);
@@ -254,6 +251,7 @@
 		C9164FB9268489400085CFF8 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				C9164FC22684A4BE0085CFF8 /* UserManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -270,7 +268,6 @@
 		C9164FC12684A4AA0085CFF8 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C9164FC22684A4BE0085CFF8 /* NetworkRequest+User.swift */,
 				C9164FBF2684A33E0085CFF8 /* NetworkRequest.swift */,
 				C9164FC42684AC9B0085CFF8 /* User.swift */,
 				C9486B3A2685C0440067F319 /* Repository.swift */,
@@ -456,15 +453,14 @@
 			files = (
 				C9486B4A2687352A0067F319 /* UserListCell.swift in Sources */,
 				C9486B3F2685E7970067F319 /* Observable.swift in Sources */,
-				C9486B4E268756C30067F319 /* UserListCellModel.swift in Sources */,
 				C9164FC02684A33E0085CFF8 /* NetworkRequest.swift in Sources */,
 				C9164FA72684710A0085CFF8 /* DependancyContainer.swift in Sources */,
 				C9486B3B2685C0440067F319 /* Repository.swift in Sources */,
-				C9486B4C268737420067F319 /* BaseViewController.swift in Sources */,
 				C9486B5F26889D3E0067F319 /* RepositoryListCell.swift in Sources */,
 				C9164FBC268492860085CFF8 /* UserViewController.swift in Sources */,
 				C9486B42268602510067F319 /* UserListViewController.swift in Sources */,
 				C9164FAC268472340085CFF8 /* MainCoordinator.swift in Sources */,
+				80B234C1268CD2FD00E9CC8A /* BaseViewController.swift in Sources */,
 				C9164FA326846CE20085CFF8 /* LoginViewController.swift in Sources */,
 				C9164F7026846C6D0085CFF8 /* AppDelegate.swift in Sources */,
 				C9486B5126875C5B0067F319 /* LoadingScreen.swift in Sources */,
@@ -481,7 +477,7 @@
 				C9164FB7268485140085CFF8 /* LoginViewModel.swift in Sources */,
 				C9486B65268A23860067F319 /* UIImage+LoadImage.swift in Sources */,
 				C9164F7A26846C6D0085CFF8 /* GitHuber.xcdatamodeld in Sources */,
-				C9164FC32684A4BE0085CFF8 /* NetworkRequest+User.swift in Sources */,
+				C9164FC32684A4BE0085CFF8 /* UserManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,7 +575,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -634,7 +630,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -650,7 +646,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXYM6M435R;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GitHuber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -669,7 +665,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VXYM6M435R;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = GitHuber/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

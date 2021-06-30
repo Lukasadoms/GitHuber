@@ -104,11 +104,11 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func followersButtonTapped(_ sender: Any) {
-        coordinator?.startUserListViewController(user: viewModel.user, type: .followers)
+        coordinator?.startUserListViewController(user: viewModel.user, type: .followers, users: nil)
     }
     
     @IBAction func followingButtonTapped(_ sender: Any) {
-        coordinator?.startUserListViewController(user: viewModel.user, type: .following)
+        coordinator?.startUserListViewController(user: viewModel.user, type: .following, users: nil)
     }
     
     @IBAction func reposButtonTapped(_ sender: Any) {

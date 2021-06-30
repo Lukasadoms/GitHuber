@@ -29,8 +29,8 @@ class MainCoordinator {
         navigationController.pushViewController(userViewController, animated: true)
     }
     
-    func startUserListViewController(user: User, type: UserListViewModel.UserlListType ) {
-        let userListViewController = viewControllersFactory.makeUserListViewController(user: user, type: type)
+    func startUserListViewController(user: User?, type: UserListViewModel.UserlListType?, users: [User]? ) {
+        let userListViewController = viewControllersFactory.makeUserListViewController(user: user, type: type, users: users)
         userListViewController.coordinator = self
         navigationController.pushViewController(userListViewController, animated: true)
     }

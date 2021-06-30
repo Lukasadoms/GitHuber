@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -39,11 +40,10 @@
                 <constraints>
                     <constraint firstItem="yqP-qm-IAV" firstAttribute="leading" secondItem="a4S-CM-8zG" secondAttribute="trailing" constant="10" id="E5R-ev-E9f"/>
                     <constraint firstAttribute="trailing" secondItem="w7B-SV-8dt" secondAttribute="trailing" constant="15" id="GSo-Hk-qhx"/>
-                    <constraint firstItem="a4S-CM-8zG" firstAttribute="centerY" secondItem="Tp8-8z-Dll" secondAttribute="centerY" id="GT6-I8-P77"/>
+                    <constraint firstItem="a4S-CM-8zG" firstAttribute="top" secondItem="Tp8-8z-Dll" secondAttribute="top" constant="15" id="Pc7-ef-XcY"/>
                     <constraint firstItem="w7B-SV-8dt" firstAttribute="centerY" secondItem="yqP-qm-IAV" secondAttribute="centerY" id="R7v-7R-CBt"/>
-                    <constraint firstAttribute="bottom" secondItem="a4S-CM-8zG" secondAttribute="bottom" constant="15" id="hJC-u6-cZ4"/>
                     <constraint firstItem="yqP-qm-IAV" firstAttribute="centerY" secondItem="a4S-CM-8zG" secondAttribute="centerY" id="jkv-b3-Hwn"/>
-                    <constraint firstItem="a4S-CM-8zG" firstAttribute="top" secondItem="Tp8-8z-Dll" secondAttribute="top" constant="15" id="lJp-ca-IFL"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="a4S-CM-8zG" secondAttribute="bottom" constant="15" id="kps-4o-Vrn"/>
                     <constraint firstItem="a4S-CM-8zG" firstAttribute="leading" secondItem="Tp8-8z-Dll" secondAttribute="leading" constant="15" id="pgv-iJ-NLo"/>
                 </constraints>
             </tableViewCellContentView>

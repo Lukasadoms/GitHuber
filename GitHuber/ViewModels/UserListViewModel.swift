@@ -11,7 +11,6 @@ struct UserListCellModel {
     
     var user: User
     var followerCount: Int?
-    
 }
 
 class UserListViewModel {
@@ -22,6 +21,7 @@ class UserListViewModel {
     enum UserlListType {
         case following
         case followers
+        case contributors
         
         var rawValue: String {
             switch self {
@@ -29,20 +29,40 @@ class UserListViewModel {
                 return "followers"
             case .following:
                 return "following"
+            case .contributors:
+                return "contributors"
             }
         }
     }
     
-    private let user: User
-    private let type: UserlListType
+    private let user: User?
+    private let type: UserlListType?
+    private let users: [User]?
     
-    init(user: User, type: UserlListType) {
+    init(user: User?, type: UserlListType?, users: [User]?) {
         self.user = user
         self.type = type
+        self.users = users
     }
     
     func start() {
-        getUserList(user: user, type: type)
+        if let user = user, let type = type {
+            getUserList(user: user, type: type)
+        }
+        else {
+            loadUserList()
+        }
+    }
+    
+    private func loadUserList() {
+        guard let users = users else { return }
+        for user in users {
+            var userCellModel = UserListCellModel(user: user)
+            getUserInfo(user: user) { completion in
+                userCellModel.followerCount = completion.followers
+                self.userList.value.append(userCellModel)
+            }
+        }
     }
     
     private func getUserList(user: User, type: UserlListType) {
