@@ -30,7 +30,7 @@ class LoginViewController: UIViewController {
         viewModel.appeared()
         viewModel.isLoading.bind { [weak self] isLoading in
             if isLoading {
-                //self?.view.showBlurLoader()
+                self?.view.showBlurLoader()
             }
             else {
                 self?.view.removeBluerLoader()

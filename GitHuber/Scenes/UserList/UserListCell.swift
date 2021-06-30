@@ -13,52 +13,17 @@ final class UserListCell: UITableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var followersLabel: UILabel!
     
-    let userInfo = User?(nil)
-    
-    func configureCell(user: User) {
-        guard let url = URL(string: user.userAvatar) else { return }
-        downloadImage(from: url)
-        getUserInfo(user: user)
+    func configureCell(user: UserListCellModel) {
+        guard let url = URL(string: user.user.userAvatar) else { return }
+        userImageView.image = #imageLiteral(resourceName: "appLogo")
+        userImageView.image?.downloadImage(from: url) { completion in
+            self.userImageView.image = completion
+        }
+        userNameLabel.text = user.user.login
+        followersLabel.text = "Followers: \(user.followerCount ?? 0)"
         userImageView.layer.cornerRadius = userImageView.frame.size.width / 2
         userImageView.clipsToBounds = true
-//        guard let userInfo = userInfo else { return }
-//        userNameLabel.text = userInfo.login
-//        followersLabel.text = "Followers: \(userInfo.followers ?? 0)"
     }
     
-    private func downloadImage(from url: URL) {
-        getData(from: url) { data, response, error in
-            guard let data = data, error == nil else { return }
-            guard let image = UIImage(data: data) else {
-                DispatchQueue.main.async {
-                    self.userImageView.image = #imageLiteral(resourceName: "appLogo")
-                }
-                return
-            }
-            DispatchQueue.main.async {
-                self.userImageView.image = image
-            }
-        }
-    }
     
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
-        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
-    }
-    
-    private func getUserInfo(user: User) {
-        NetworkRequest
-            .RequestType
-            .getUser(username: user.login)
-            .networkRequest()?
-            .start(responseType: User.self) { [weak self] result in
-                switch result {
-                case .success(let response):
-                    self?.followersLabel.text = "Followers: \(response.object.followers ?? 0 )"
-                    self?.userNameLabel.text = response.object.login
-                    print(response)
-                case .failure(let error):
-                    print("failed to get repositories, error: \(error)")
-                }
-            }
-    }
 }

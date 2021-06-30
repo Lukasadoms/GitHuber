@@ -107,10 +107,10 @@ struct NetworkRequest {
     func start<T: Decodable>(responseType: T.Type, completionHandler: @escaping ((Result<NetworkResult<T>, Error>) -> Void)) {
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        if let accessToken = NetworkRequest.accessToken {
+        if let accessToken = UserManager.accessToken {
             request.setValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
         }
-        print("\(NetworkRequest.accessToken)")
+        //print("\(UserManager.accessToken)")
         let session = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let response = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
@@ -140,16 +140,16 @@ struct NetworkRequest {
                     }
                 }
                 DispatchQueue.main.async {
-                    NetworkRequest.accessToken = dictionary["access_token"]
-                    NetworkRequest.refreshToken = dictionary["refresh_token"]
+                    UserManager.accessToken = dictionary["access_token"]
+                    UserManager.refreshToken = dictionary["refresh_token"]
                     completionHandler(.success((response, "Success" as! T)))
                 }
                 return
             } else if let object = try? JSONDecoder().decode(T.self, from: data) {
                 DispatchQueue.main.async {
                     if let user = object as? User {
-                        if NetworkRequest.username == nil {
-                            NetworkRequest.username = user.login
+                        if UserManager.username == nil {
+                            UserManager.username = user.login
                         }
                         completionHandler(.success((response, object)))
                     } else {

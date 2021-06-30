@@ -14,6 +14,7 @@ class LoginViewModel: NSObject {
     var onLogin: ((_ user: User) -> Void)?
     
     func loginUser() {
+        isLoading.value = true
         guard let signInURL =
                 NetworkRequest.RequestType.signIn.networkRequest()?.url
         else {
@@ -36,8 +37,6 @@ class LoginViewModel: NSObject {
                 print("An error occurred when attempting to sign in.")
                 return
             }
-            
-            
             networkRequest.start(responseType: String.self) { result in
                 switch result {
                 case .success(let data):
@@ -64,7 +63,6 @@ class LoginViewModel: NSObject {
     }
     
     private func getLoggedInUser() {
-        isLoading.value = true
         
         NetworkRequest
             .RequestType
@@ -83,8 +81,6 @@ class LoginViewModel: NSObject {
                 }
             }
     }
-    
-    
 }
 
 extension LoginViewModel: ASWebAuthenticationPresentationContextProviding {

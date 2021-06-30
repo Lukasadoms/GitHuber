@@ -74,7 +74,7 @@ class UserViewController: UIViewController {
     
     func setupView() {
         
-        if viewModel.user.login == NetworkRequest.username {
+        if viewModel.user.login == UserManager.username {
             navigationItem.hidesBackButton = true
             followButton.isHidden = true
             configureNavigationBar()

@@ -5,12 +5,19 @@
 //  Created by Lukas Adomavicius on 6/25/21.
 //
 
-import Foundation
+import UIKit
+
+struct UserListCellModel {
+    
+    var user: User
+    var followerCount: Int?
+    
+}
 
 class UserListViewModel {
     
     var isLoading = Observable<Bool>(false)
-    var userList = Observable<[User]>([])
+    var userList = Observable<[UserListCellModel]>([])
     
     enum UserlListType {
         case following
@@ -48,12 +55,32 @@ class UserListViewModel {
             .start(responseType: [User].self) { [weak self] result in
                 switch result {
                 case .success(let response):
-                    self?.userList.value = response.object
-                    print(response)
+                    for user in response.object {
+                        var userCellModel = UserListCellModel(user: user)
+                        self?.getUserInfo(user: user) { completion in
+                            userCellModel.followerCount = completion.followers
+                            self?.userList.value.append(userCellModel)
+                        }
+                    }
                 case .failure(let error):
                     print("failed to get userList, error: \(error)")
                 }
                 self?.isLoading.value = false
+            }
+    }
+    
+    private func getUserInfo(user: User, completion: @escaping (User) -> ()) {
+        NetworkRequest
+            .RequestType
+            .getUser(username: user.login)
+            .networkRequest()?
+            .start(responseType: User.self) { result in
+                switch result {
+                case .success(let response):
+                    completion(response.object)
+                case .failure(let error):
+                    print("failed to get repositories, error: \(error)")
+                }
             }
     }
     

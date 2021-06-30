@@ -75,6 +75,6 @@ extension UserListViewController: UITableViewDataSource {
 extension UserListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = viewModel.userList.value[indexPath.row]
-        coordinator?.startUserViewController(user: user)
+        coordinator?.startUserViewController(user: user.user)
     }
 }

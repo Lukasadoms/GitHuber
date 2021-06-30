@@ -33,7 +33,7 @@ class RepositoryListViewController: UIViewController {
         repositoryListTableView.register(cellNib, forCellReuseIdentifier: "RepositoryListCell")
         repositoryListTableView.dataSource = self
         repositoryListTableView.delegate = self
-        self.title = "GitHubers List"
+        self.title = "GitHuber Repos List"
     }
 }
 
