@@ -8,6 +8,7 @@ protocol ViewControllersFactory {
     func makeUserListViewController(user: User?, type: UserListViewModel.UserlListType?, users: [User]?) -> UserListViewController
     func makeRepositoryListViewController(repositories: [Repository]) -> RepositoryListViewController
     func makeRepositoryViewController(repository: Repository) -> RepositoryViewController
+    func makeSearchViewController() -> SearchViewController
 }
 
 extension DependencyContainer: ViewControllersFactory {
@@ -39,5 +40,11 @@ extension DependencyContainer: ViewControllersFactory {
         let viewModel = RepositoryViewModel(repository: repository)
         let repositoryViewController = RepositoryViewController(viewModel: viewModel)
         return repositoryViewController
+    }
+    
+    func makeSearchViewController() -> SearchViewController {
+        let viewModel = SearchViewModel()
+        let searchViewController = SearchViewController(viewModel: viewModel)
+        return searchViewController
     }
 }

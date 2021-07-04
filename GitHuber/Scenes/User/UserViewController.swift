@@ -21,6 +21,7 @@ class UserViewController: UIViewController {
     @IBOutlet weak var repositoriesButton: UIButton!
     @IBOutlet weak var staredReposButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
+    @IBOutlet weak var searchButton: UIButton!
     
     init(viewModel: UserViewModel) {
         self.viewModel = viewModel
@@ -79,6 +80,7 @@ class UserViewController: UIViewController {
             followButton.isHidden = true
             configureNavigationBar()
             logoutButton.isHidden = false
+            searchButton.isHidden = false
         }
         self.title = "GitHuber"
         userImage.layer.cornerRadius = userImage.frame.size.width / 2
@@ -86,6 +88,7 @@ class UserViewController: UIViewController {
     }
     
     func configureNavigationBar() {
+        
         let img = UIImage(systemName: "gear")!
         let imgWidth = img.size.width
         let imgHeight = img.size.height
@@ -101,6 +104,10 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func followButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func searchButtonTapped(_ sender: Any) {
+        coordinator?.startSearchViewController()
     }
     
     @IBAction func followersButtonTapped(_ sender: Any) {

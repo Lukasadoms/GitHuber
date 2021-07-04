@@ -16,8 +16,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="413" height="103"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Repository" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69g-65-Mnk">
-                        <rect key="frame" x="15" y="15" width="94" height="24"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" text="Repository" textAlignment="natural" lineBreakMode="characterWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="69g-65-Mnk">
+                        <rect key="frame" x="15" y="15" width="200" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="999" constant="200" id="hUo-oQ-yoq"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -29,7 +32,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Stars:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGX-nb-eVD">
-                        <rect key="frame" x="318" y="16.5" width="45" height="21"/>
+                        <rect key="frame" x="318.5" y="16.5" width="44.5" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
@@ -43,11 +46,11 @@
                 </subviews>
                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="OGX-nb-eVD" secondAttribute="trailing" constant="50" id="6Tn-20-aW3"/>
                     <constraint firstItem="dEd-9B-mGH" firstAttribute="leading" secondItem="387-Qj-01p" secondAttribute="leading" id="Dgz-L5-bHk"/>
                     <constraint firstItem="387-Qj-01p" firstAttribute="top" secondItem="69g-65-Mnk" secondAttribute="bottom" constant="5" id="KmR-In-klz"/>
                     <constraint firstItem="OGX-nb-eVD" firstAttribute="centerY" secondItem="69g-65-Mnk" secondAttribute="centerY" id="Vv0-Xb-5TD"/>
                     <constraint firstItem="OGX-nb-eVD" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="69g-65-Mnk" secondAttribute="trailing" constant="10" id="aaL-tl-4mm"/>
-                    <constraint firstAttribute="trailing" secondItem="OGX-nb-eVD" secondAttribute="trailing" constant="50" id="fZl-0g-RbY"/>
                     <constraint firstItem="387-Qj-01p" firstAttribute="leading" secondItem="Cz1-hv-sSL" secondAttribute="leading" constant="15" id="nV6-Yb-4G4"/>
                     <constraint firstItem="69g-65-Mnk" firstAttribute="top" secondItem="Cz1-hv-sSL" secondAttribute="top" constant="15" id="pxG-Jr-D0a"/>
                     <constraint firstAttribute="bottom" secondItem="dEd-9B-mGH" secondAttribute="bottom" constant="15" id="u5K-8u-L1S"/>

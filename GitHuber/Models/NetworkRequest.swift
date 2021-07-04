@@ -26,6 +26,7 @@ struct NetworkRequest {
         case signIn
         case getUserList(username: String, type: UserListViewModel.UserlListType)
         case getRepoContributors(repository: Repository)
+        case searchUsers(username: String, minimumRepositories: Int?, minimumFollowers: Int?, sortedBy: String?)
         
         func networkRequest() -> NetworkRequest? {
             guard let url = url() else {
@@ -52,6 +53,8 @@ struct NetworkRequest {
                 return .get
             case .getRepoContributors:
                 return .get
+            case .searchUsers:
+                return .post
             }
         }
         
@@ -81,6 +84,14 @@ struct NetworkRequest {
                 return urlComponents(path: "/users/\(username)/starred", queryItems: nil).url
             case .getRepoContributors(let repository):
                 return urlComponents(path: "/repos/\(repository.owner.login)/\(repository.name ?? "")/contributors", queryItems: nil).url
+            case .searchUsers(let username, let minimumRepositories, let minimumFollowers, let sortedBy):
+                let queryItems = [
+                    URLQueryItem(name: "searchQuery", value: searchQueryKey),
+                    URLQueryItem(name: "userName", value: username),
+                    URLQueryItem(name: "minRepositories", value: "repos:>=\(minimumRepositories)"),
+                    URLQueryItem(name: "minFollowers", value: "followers:>=\(minimumFollowers)")
+                ]
+                return urlComponents(path: "/search/users", queryItems: queryItems).url
             }
         }
         
@@ -103,6 +114,7 @@ struct NetworkRequest {
     static let callbackURLScheme = "mygithubberApp"
     static let clientID = "Iv1.9111a4a6e6797093"
     static let clientSecret = "2dd26f07a8d7ae29c9f635f977feb680c4e8b6b3"
+    static let searchQueryKey = "q"
     
     // MARK: Properties
     var method: HTTPMethod

@@ -46,6 +46,12 @@ class MainCoordinator {
         repositoryViewController.coordinator = self
         navigationController.pushViewController(repositoryViewController, animated: true)
     }
+    
+    func startSearchViewController() {
+        let searchViewController = viewControllersFactory.makeSearchViewController()
+        searchViewController.coordinator = self
+        navigationController.pushViewController(searchViewController, animated: true)
+    }
 
     func logout() {
         navigationController.popViewController(animated: true)

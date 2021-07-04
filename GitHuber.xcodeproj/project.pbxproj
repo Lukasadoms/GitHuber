@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		803FBDEA26901EC300A6EB01 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBDE926901EC300A6EB01 /* SearchViewController.swift */; };
+		803FBDF226901F5500A6EB01 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803FBDF126901F5500A6EB01 /* SearchViewController.xib */; };
+		803FBDF72690200D00A6EB01 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBDF62690200D00A6EB01 /* SearchViewModel.swift */; };
 		80B234C1268CD2FD00E9CC8A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B234C0268CD2FD00E9CC8A /* BaseViewController.swift */; };
 		C9164F7026846C6D0085CFF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164F6F26846C6D0085CFF8 /* AppDelegate.swift */; };
 		C9164F7226846C6D0085CFF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164F7126846C6D0085CFF8 /* SceneDelegate.swift */; };
@@ -65,6 +68,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		803FBDE926901EC300A6EB01 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		803FBDF126901F5500A6EB01 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
+		803FBDF62690200D00A6EB01 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		80B234C0268CD2FD00E9CC8A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C9164F6C26846C6D0085CFF8 /* GitHuber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHuber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9164F6F26846C6D0085CFF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +142,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		803FBDE826901EA200A6EB01 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				803FBDE926901EC300A6EB01 /* SearchViewController.swift */,
+				803FBDF126901F5500A6EB01 /* SearchViewController.xib */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		C9164F6326846C6D0085CFF8 = {
 			isa = PBXGroup;
 			children = (
@@ -206,6 +221,7 @@
 		C9164FAF268474290085CFF8 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				803FBDE826901EA200A6EB01 /* Search */,
 				C9486B572687784D0067F319 /* Repository */,
 				C9486B52268777B60067F319 /* RepositoryList */,
 				C9486B40268601E30067F319 /* UserList */,
@@ -235,6 +251,7 @@
 				C9486B3E2685E7970067F319 /* Observable.swift */,
 				C9486B5C268896EE0067F319 /* RepositoryListViewModel.swift */,
 				C9486B622688CFEC0067F319 /* RepositoryViewModel.swift */,
+				803FBDF62690200D00A6EB01 /* SearchViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -426,6 +443,7 @@
 				C9164FBE268492950085CFF8 /* UserViewController.xib in Resources */,
 				C9486B6126889D4E0067F319 /* RepositoryListCell.xib in Resources */,
 				C9486B56268777D60067F319 /* RepositoryListViewController.xib in Resources */,
+				803FBDF226901F5500A6EB01 /* SearchViewController.xib in Resources */,
 				C9486B44268602700067F319 /* UserListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,10 +487,12 @@
 				C9486B3D2685D20D0067F319 /* UserViewModel.swift in Sources */,
 				C9164FA9268471840085CFF8 /* KeyChainSwift.swift in Sources */,
 				C9486B59268778CA0067F319 /* RepositoryViewController.swift in Sources */,
+				803FBDF72690200D00A6EB01 /* SearchViewModel.swift in Sources */,
 				C9164FAE2684726F0085CFF8 /* ViewControllerFactory.swift in Sources */,
 				C9486B46268603EA0067F319 /* UserListViewModel.swift in Sources */,
 				C9486B54268777CA0067F319 /* RepositoryListViewController.swift in Sources */,
 				C9164F7226846C6D0085CFF8 /* SceneDelegate.swift in Sources */,
+				803FBDEA26901EC300A6EB01 /* SearchViewController.swift in Sources */,
 				C9486B632688CFEC0067F319 /* RepositoryViewModel.swift in Sources */,
 				C9164FB7268485140085CFF8 /* LoginViewModel.swift in Sources */,
 				C9486B65268A23860067F319 /* UIImage+LoadImage.swift in Sources */,

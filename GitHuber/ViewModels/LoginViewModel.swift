@@ -9,8 +9,8 @@ import Foundation
 import AuthenticationServices
 
 class LoginViewModel: NSObject {
-    var isLoading = Observable<Bool>(false)
     
+    var isLoading = Observable<Bool>(false)
     var onLogin: ((_ user: User) -> Void)?
     
     func loginUser() {
@@ -35,19 +35,20 @@ class LoginViewModel: NSObject {
                     NetworkRequest.RequestType.codeExchange(code: code).networkRequest()
             else {
                 print("An error occurred when attempting to sign in.")
+                self?.isLoading.value = false
                 return
             }
             networkRequest.start(responseType: String.self) { result in
                 switch result {
                 case .success(let data):
                     self?.getLoggedInUser()
-                    self?.isLoading.value = false
                     print(data)
                 case .failure(let error):
                     print("Failed to exchange access code for tokens: \(error)")
-                    self?.isLoading.value = false
+                    
                 }
             }
+            self?.isLoading.value = false
         }
         
         authenticationSession.presentationContextProvider = self
