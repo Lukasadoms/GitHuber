@@ -10,6 +10,8 @@
 		803FBDEA26901EC300A6EB01 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBDE926901EC300A6EB01 /* SearchViewController.swift */; };
 		803FBDF226901F5500A6EB01 /* SearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 803FBDF126901F5500A6EB01 /* SearchViewController.xib */; };
 		803FBDF72690200D00A6EB01 /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBDF62690200D00A6EB01 /* SearchViewModel.swift */; };
+		803FBDFC2691824500A6EB01 /* UserSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBDFB2691824500A6EB01 /* UserSearch.swift */; };
+		803FBE01269191FB00A6EB01 /* String+PercentEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBE00269191FB00A6EB01 /* String+PercentEncoding.swift */; };
 		80B234C1268CD2FD00E9CC8A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B234C0268CD2FD00E9CC8A /* BaseViewController.swift */; };
 		C9164F7026846C6D0085CFF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164F6F26846C6D0085CFF8 /* AppDelegate.swift */; };
 		C9164F7226846C6D0085CFF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164F7126846C6D0085CFF8 /* SceneDelegate.swift */; };
@@ -71,6 +73,8 @@
 		803FBDE926901EC300A6EB01 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		803FBDF126901F5500A6EB01 /* SearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchViewController.xib; sourceTree = "<group>"; };
 		803FBDF62690200D00A6EB01 /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		803FBDFB2691824500A6EB01 /* UserSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearch.swift; sourceTree = "<group>"; };
+		803FBE00269191FB00A6EB01 /* String+PercentEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PercentEncoding.swift"; sourceTree = "<group>"; };
 		80B234C0268CD2FD00E9CC8A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C9164F6C26846C6D0085CFF8 /* GitHuber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHuber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9164F6F26846C6D0085CFF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -288,6 +292,7 @@
 				C9164FBF2684A33E0085CFF8 /* NetworkRequest.swift */,
 				C9164FC42684AC9B0085CFF8 /* User.swift */,
 				C9486B3A2685C0440067F319 /* Repository.swift */,
+				803FBDFB2691824500A6EB01 /* UserSearch.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -308,6 +313,7 @@
 			children = (
 				C9486B5026875C5B0067F319 /* LoadingScreen.swift */,
 				C9486B64268A23860067F319 /* UIImage+LoadImage.swift */,
+				803FBE00269191FB00A6EB01 /* String+PercentEncoding.swift */,
 			);
 			path = extensions;
 			sourceTree = "<group>";
@@ -475,6 +481,7 @@
 				C9164FA72684710A0085CFF8 /* DependancyContainer.swift in Sources */,
 				C9486B3B2685C0440067F319 /* Repository.swift in Sources */,
 				C9486B5F26889D3E0067F319 /* RepositoryListCell.swift in Sources */,
+				803FBDFC2691824500A6EB01 /* UserSearch.swift in Sources */,
 				C9164FBC268492860085CFF8 /* UserViewController.swift in Sources */,
 				C9486B42268602510067F319 /* UserListViewController.swift in Sources */,
 				C9164FAC268472340085CFF8 /* MainCoordinator.swift in Sources */,
@@ -491,6 +498,7 @@
 				C9164FAE2684726F0085CFF8 /* ViewControllerFactory.swift in Sources */,
 				C9486B46268603EA0067F319 /* UserListViewModel.swift in Sources */,
 				C9486B54268777CA0067F319 /* RepositoryListViewController.swift in Sources */,
+				803FBE01269191FB00A6EB01 /* String+PercentEncoding.swift in Sources */,
 				C9164F7226846C6D0085CFF8 /* SceneDelegate.swift in Sources */,
 				803FBDEA26901EC300A6EB01 /* SearchViewController.swift in Sources */,
 				C9486B632688CFEC0067F319 /* RepositoryViewModel.swift in Sources */,

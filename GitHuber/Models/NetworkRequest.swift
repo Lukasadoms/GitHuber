@@ -26,7 +26,7 @@ struct NetworkRequest {
         case signIn
         case getUserList(username: String, type: UserListViewModel.UserlListType)
         case getRepoContributors(repository: Repository)
-        case searchUsers(username: String, minimumRepositories: Int?, minimumFollowers: Int?, sortedBy: String?)
+        case searchUsers(username: String, minimumRepositories: String?, minimumFollowers: String?, sortedBy: String)
         
         func networkRequest() -> NetworkRequest? {
             guard let url = url() else {
@@ -54,7 +54,7 @@ struct NetworkRequest {
             case .getRepoContributors:
                 return .get
             case .searchUsers:
-                return .post
+                return .get
             }
         }
         
@@ -85,13 +85,22 @@ struct NetworkRequest {
             case .getRepoContributors(let repository):
                 return urlComponents(path: "/repos/\(repository.owner.login)/\(repository.name ?? "")/contributors", queryItems: nil).url
             case .searchUsers(let username, let minimumRepositories, let minimumFollowers, let sortedBy):
-                let queryItems = [
-                    URLQueryItem(name: "searchQuery", value: searchQueryKey),
-                    URLQueryItem(name: "userName", value: username),
-                    URLQueryItem(name: "minRepositories", value: "repos:>=\(minimumRepositories)"),
-                    URLQueryItem(name: "minFollowers", value: "followers:>=\(minimumFollowers)")
-                ]
-                return urlComponents(path: "/search/users", queryItems: queryItems).url
+                var query = "\(username)"
+                if
+                    let minimumRepositories = minimumRepositories,
+                    minimumRepositories != ""
+                {
+                    query.append("+repos:>=\(minimumRepositories)")
+                }
+                if
+                    let minimumFollowers = minimumFollowers,
+                    minimumFollowers != ""
+                {
+                    query.append("+followers:>=\(minimumFollowers)")
+                }
+                query.append("+sort:\(sortedBy)")
+                guard let encodedQuery = query.stringByAddingPercentEncodingForRFC3986() else { return nil }
+                return URL(string: "https://api.github.com/search/users?q=\(encodedQuery)")
             }
         }
         
@@ -123,6 +132,7 @@ struct NetworkRequest {
     // MARK: Methods
     func start<T: Decodable>(responseType: T.Type, completionHandler: @escaping ((Result<NetworkResult<T>, Error>) -> Void)) {
         var request = URLRequest(url: url)
+        print(url)
         request.httpMethod = method.rawValue
         if let accessToken = UserManager.accessToken {
             request.setValue("token \(accessToken)", forHTTPHeaderField: "Authorization")

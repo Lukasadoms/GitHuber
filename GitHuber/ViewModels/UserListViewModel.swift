@@ -8,7 +8,6 @@
 import UIKit
 
 struct UserListCellModel {
-    
     var user: User
     var followerCount: Int?
 }

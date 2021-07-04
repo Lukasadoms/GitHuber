@@ -11,11 +11,16 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SearchViewController" customModule="GitHuber" customModuleProvider="target">
             <connections>
+                <outlet property="languageTextField" destination="FKd-Q9-us2" id="aZF-LK-43o"/>
+                <outlet property="minFollowersTextField" destination="9AV-my-qX2" id="aR5-g0-SYR"/>
+                <outlet property="minRepositpriesTextField" destination="0PA-bG-G7r" id="usW-wz-hTN"/>
                 <outlet property="repositoryFilterStackView" destination="OqB-fV-vc7" id="sI8-eB-RWI"/>
+                <outlet property="repositorySortPicker" destination="x2f-Ff-r20" id="K4m-mc-tGP"/>
+                <outlet property="resultsTableView" destination="ufv-GN-ZhM" id="F7o-rA-q9S"/>
                 <outlet property="searchBar" destination="G32-9v-2gX" id="TXd-kI-LKg"/>
-                <outlet property="searchModePicker" destination="vw1-Ch-RRK" id="3yy-yQ-SSU"/>
-                <outlet property="searchTableView" destination="ufv-GN-ZhM" id="eYP-gm-mes"/>
+                <outlet property="searchModePicker" destination="vw1-Ch-RRK" id="e8N-Cq-QGf"/>
                 <outlet property="userFilterStackView" destination="AW8-D6-Mg1" id="Jyc-nY-roK"/>
+                <outlet property="usersSortPicker" destination="PoA-Wm-fEC" id="5QY-jf-kVZ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="cfD-5R-cyM"/>
             </connections>
         </placeholder>
@@ -168,6 +173,9 @@
                                                 <segment title="Repositories"/>
                                                 <segment title="Date joined"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="userSortPickerChangedValue:" destination="-1" eventType="valueChanged" id="yRN-1A-SQN"/>
+                                            </connections>
                                         </segmentedControl>
                                     </subviews>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -207,12 +215,16 @@
                         <action selector="filterButtonPressed:" destination="-1" eventType="touchUpInside" id="PZD-tO-4zS"/>
                     </connections>
                 </button>
-                <searchBar contentMode="redraw" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G32-9v-2gX">
+                <searchBar contentMode="redraw" showsCancelButton="YES" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G32-9v-2gX">
                     <rect key="frame" x="0.0" y="44" width="414" height="46"/>
                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="barTintColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <textInputTraits key="textInputTraits" returnKeyType="go"/>
+                    <scopeButtonTitles>
+                        <string>Title</string>
+                        <string>Title</string>
+                    </scopeButtonTitles>
                 </searchBar>
                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="vw1-Ch-RRK">
                     <rect key="frame" x="5" y="95" width="319" height="51"/>

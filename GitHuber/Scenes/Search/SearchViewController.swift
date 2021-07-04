@@ -11,12 +11,18 @@ class SearchViewController: UIViewController {
     
     let viewModel: SearchViewModel
     weak var coordinator: MainCoordinator?
+    private let sortStrings = ["followers", "repositories", "author-date"]
     
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var searchModePicker: UISegmentedControl!
-    @IBOutlet weak var searchTableView: UITableView!
+    @IBOutlet weak var languageTextField: UITextField!
+    @IBOutlet weak var repositorySortPicker: UISegmentedControl!
+    @IBOutlet weak var minRepositpriesTextField: UITextField!
+    @IBOutlet weak var minFollowersTextField: UITextField!
+    @IBOutlet weak var usersSortPicker: UISegmentedControl!
     @IBOutlet weak var repositoryFilterStackView: UIStackView!
     @IBOutlet weak var userFilterStackView: UIStackView!
+    @IBOutlet weak var resultsTableView: UITableView!
     
     init(viewModel: SearchViewModel) {
         self.viewModel = viewModel
@@ -29,10 +35,23 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchTableView.dataSource = self
-        searchTableView.delegate = self
+        
+        let cellNib = UINib(nibName: "UserListCell", bundle: nil)
+        resultsTableView.register(cellNib, forCellReuseIdentifier: "UserListCell")
+
+        bindViewModel()
+        getUserList()
+        resultsTableView.dataSource = self
+        resultsTableView.delegate = self
+        searchBar.delegate = self
         userFilterStackView.isHidden = true
         repositoryFilterStackView.isHidden = true
+    }
+    
+    func bindViewModel() {
+        viewModel.userList.bind { [weak self] userList in
+            self?.resultsTableView.reloadData()
+        }
     }
     
     @IBAction func filterButtonPressed(_ sender: Any) {
@@ -45,23 +64,54 @@ class SearchViewController: UIViewController {
     }
     
     @IBAction func searchPickerChangedValue(_ sender: UIPickerView) {
+        
         userFilterStackView.isHidden = true
         repositoryFilterStackView.isHidden = true
+    }
+    @IBAction func userSortPickerChangedValue(_ sender: UISegmentedControl) {
+        getUserList()
+    }
+    
+    func getUserList() {
+        guard let text = searchBar.text else { return }
+        viewModel.postUserSearchQuery(
+            username: text,
+            minFollowers: minFollowersTextField.text,
+            minRepositories: minRepositpriesTextField.text,
+            sortedBy: sortStrings[usersSortPicker.selectedSegmentIndex]
+        )
     }
 }
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        5
+        viewModel.userList.value.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserListCell", for: indexPath)
+
+        guard
+            let userListCell = cell as? UserListCell
+        else {
+            return cell
+        }
+
+        let user = viewModel.userList.value[indexPath.row]
+        userListCell.configureCell(user: user)
+
+        return userListCell
     }
 }
 
 extension SearchViewController: UITableViewDelegate {
     
+}
+
+extension SearchViewController: UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        getUserList()
+    }
 }
 
 
