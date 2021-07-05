@@ -13,6 +13,8 @@
 		803FBDFC2691824500A6EB01 /* UserSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBDFB2691824500A6EB01 /* UserSearch.swift */; };
 		803FBE01269191FB00A6EB01 /* String+PercentEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBE00269191FB00A6EB01 /* String+PercentEncoding.swift */; };
 		803FBE062692DA8100A6EB01 /* RepositorySearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBE052692DA8100A6EB01 /* RepositorySearch.swift */; };
+		803FBE0B2693026300A6EB01 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBE0A2693026300A6EB01 /* CoreDataManager.swift */; };
+		803FBE102693060800A6EB01 /* UserDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 803FBE0F2693060800A6EB01 /* UserDataManager.swift */; };
 		80B234C1268CD2FD00E9CC8A /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80B234C0268CD2FD00E9CC8A /* BaseViewController.swift */; };
 		C9164F7026846C6D0085CFF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164F6F26846C6D0085CFF8 /* AppDelegate.swift */; };
 		C9164F7226846C6D0085CFF8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164F7126846C6D0085CFF8 /* SceneDelegate.swift */; };
@@ -77,6 +79,8 @@
 		803FBDFB2691824500A6EB01 /* UserSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearch.swift; sourceTree = "<group>"; };
 		803FBE00269191FB00A6EB01 /* String+PercentEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+PercentEncoding.swift"; sourceTree = "<group>"; };
 		803FBE052692DA8100A6EB01 /* RepositorySearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositorySearch.swift; sourceTree = "<group>"; };
+		803FBE0A2693026300A6EB01 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		803FBE0F2693060800A6EB01 /* UserDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataManager.swift; sourceTree = "<group>"; };
 		80B234C0268CD2FD00E9CC8A /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		C9164F6C26846C6D0085CFF8 /* GitHuber.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GitHuber.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9164F6F26846C6D0085CFF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -275,6 +279,8 @@
 			isa = PBXGroup;
 			children = (
 				C9164FC22684A4BE0085CFF8 /* UserManager.swift */,
+				803FBE0A2693026300A6EB01 /* CoreDataManager.swift */,
+				803FBE0F2693060800A6EB01 /* UserDataManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -494,11 +500,13 @@
 				C9164F7026846C6D0085CFF8 /* AppDelegate.swift in Sources */,
 				C9486B5126875C5B0067F319 /* LoadingScreen.swift in Sources */,
 				C9164FC52684AC9B0085CFF8 /* User.swift in Sources */,
+				803FBE102693060800A6EB01 /* UserDataManager.swift in Sources */,
 				C9486B5D268896EE0067F319 /* RepositoryListViewModel.swift in Sources */,
 				C9486B3D2685D20D0067F319 /* UserViewModel.swift in Sources */,
 				C9164FA9268471840085CFF8 /* KeyChainSwift.swift in Sources */,
 				C9486B59268778CA0067F319 /* RepositoryViewController.swift in Sources */,
 				803FBDF72690200D00A6EB01 /* SearchViewModel.swift in Sources */,
+				803FBE0B2693026300A6EB01 /* CoreDataManager.swift in Sources */,
 				C9164FAE2684726F0085CFF8 /* ViewControllerFactory.swift in Sources */,
 				C9486B46268603EA0067F319 /* UserListViewModel.swift in Sources */,
 				C9486B54268777CA0067F319 /* RepositoryListViewController.swift in Sources */,

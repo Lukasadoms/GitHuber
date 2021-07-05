@@ -41,6 +41,7 @@ class SearchViewController: UIViewController {
         resultsTableView.register(userCellNib, forCellReuseIdentifier: "UserListCell")
         let repositoryCellNib = UINib(nibName: "RepositoryListCell", bundle: nil)
         resultsTableView.register(repositoryCellNib, forCellReuseIdentifier: "RepositoryListCell")
+        
         self.title = "Search"
         bindViewModel()
         startSearch()
@@ -108,7 +109,11 @@ class SearchViewController: UIViewController {
     }
     
     func getRepositoryList() {
-        guard let searchBarText = searchBar.text else { return }
+        guard let
+                searchBarText = searchBar.text,
+                searchBarText != ""
+        else { return }
+        
         viewModel.searchForRepositories(
             name: searchBarText,
             language: languageTextField.text,
@@ -158,8 +163,8 @@ extension SearchViewController: UITableViewDataSource {
                 return cell
             }
 
-            guard let repository = viewModel.repositories.value else { return UITableViewCell() }
-            repositoryListCell.setupCell(repository: repository[indexPath.row])
+            guard let repository = viewModel.repositories.value?[indexPath.row] else { return cell }
+            repositoryListCell.setupCell(repository: repository)
 
             return repositoryListCell
         }
@@ -172,8 +177,8 @@ extension SearchViewController: UITableViewDelegate {
             let user = viewModel.userList.value[indexPath.row]
             coordinator?.startUserViewController(user: user.user)
         } else {
-            guard let repository = viewModel.repositories.value else { return }
-            coordinator?.startRepositoryViewController(repository: repository[indexPath.row])
+            guard let repository = viewModel.repositories.value?[indexPath.row] else { return }
+            coordinator?.startRepositoryViewController(repository: repository)
         }
     }
 }

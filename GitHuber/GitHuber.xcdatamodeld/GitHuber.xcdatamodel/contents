@@ -1,4 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20F71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="RepositoryData" representedClassName="RepositoryData" syncable="YES" codeGenerationType="class">
+        <attribute name="language" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="owner" optional="YES" attributeType="String"/>
+        <attribute name="stars" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserData" inverseName="repository" inverseEntity="UserData"/>
+    </entity>
+    <entity name="UserData" representedClassName="UserData" syncable="YES" codeGenerationType="class">
+        <attribute name="followers" optional="YES" attributeType="String"/>
+        <attribute name="followersURL" optional="YES" attributeType="String"/>
+        <attribute name="following" optional="YES" attributeType="String"/>
+        <attribute name="fullname" optional="YES" attributeType="String"/>
+        <attribute name="repositories" optional="YES" attributeType="String"/>
+        <attribute name="userAvatar" optional="YES" attributeType="Binary"/>
+        <attribute name="username" optional="YES" attributeType="String"/>
+        <relationship name="repository" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RepositoryData" inverseName="user" inverseEntity="RepositoryData"/>
+    </entity>
+    <elements>
+        <element name="UserData" positionX="-63" positionY="-18" width="128" height="149"/>
+        <element name="RepositoryData" positionX="-54" positionY="45" width="128" height="104"/>
+    </elements>
 </model>
