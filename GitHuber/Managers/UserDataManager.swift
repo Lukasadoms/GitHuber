@@ -5,41 +5,66 @@
 //  Created by Lukas Adomavicius on 2021-07-05.
 //
 
-import Foundation
+import UIKit
 import CoreData
 
 struct UserDataManager {
     
-//    func saveTransactionsToDataBase(user: User) throws {
-//        for transaction in transactions {
-//            let newTransaction = Transaction(context: CoreDataManager.managedContext)
-//            newTransaction.amount = NSDecimalNumber(decimal: transaction.amount)
-//            newTransaction.createdOn = Int64(transaction.createdOn)
-//            newTransaction.currency = transaction.currency
-//            newTransaction.receiverId = transaction.receiverId
-//            newTransaction.senderId = transaction.senderId
-//            newTransaction.reference = transaction.reference
-//            if transaction.senderId == transaction.receiverId {
-//                var phoneNumberArray: [String] = []
-//                phoneNumberArray.append(transaction.senderId)
-//                try addAccountReferenceToTransaction(accountsPhoneNumbers: phoneNumberArray, transaction: newTransaction)
-//            }
-//            else {
-//                let accountsPhoneNumbers = [transaction.senderId, transaction.receiverId]
-//                try addAccountReferenceToTransaction(accountsPhoneNumbers: accountsPhoneNumbers, transaction: newTransaction)
-//            }
-//        }
-//        try CoreDataManager.saveContext()
-//    }
-    
-    func saveAccountToDatabase(user: User) throws {
-        let newUser = UserData(context: CoreDataManager.managedContext)
+    func saveAccountToDatabase(user: User, repositories: [Repository], starredRepositories: [Repository]) throws {
+        let account = UserData(context: CoreDataManager.managedContext)
+        account.followers = "\(user.followers ?? 0)"
+        account.following = "\(user.following ?? 0)"
+        account.fullname = user.name
+        account.username = user.login
+        account.repositories = "\(user.repositories ?? 0)"
+        if let url = URL(string: user.userAvatar) {
+            downloadImage(from: url) { completion in
+                account.userAvatar = completion.pngData()
+            }
+        }
+        for repository in repositories {
+            let repositoryData = RepositoryData(context: CoreDataManager.managedContext)
+            repositoryData.language = repository.language
+            repositoryData.name = repository.name
+            repositoryData.owner = repository.owner.login
+            repositoryData.stars = "\(repository.stars)"
+            account.addToRepository(repositoryData)
+        }
+        for repository in starredRepositories {
+            let repositoryData = StarredRepositoryData(context: CoreDataManager.managedContext)
+            repositoryData.language = repository.language
+            repositoryData.name = repository.name
+            repositoryData.owner = repository.owner.login
+            repositoryData.stars = "\(repository.stars)"
+            account.addToStarredRepository(repositoryData)
+        }
+        
         do {
             try CoreDataManager.saveContext()
         }
         catch {
             throw error
         }
+    }
+    
+    func downloadImage(from url: URL, completion: @escaping (UIImage) -> () ) {
+        getData(from: url) { data, response, error in
+            guard let data = data, error == nil else { return }
+            guard let image = UIImage(data: data) else {
+                DispatchQueue.main.async {
+                    let image = #imageLiteral(resourceName: "appLogo")
+                    completion(image)
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                completion(image)
+            }
+        }
+    }
+    
+    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+        URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
 //    func getAccountFromDatabase (accountPhoneNumber: String) -> Account? {

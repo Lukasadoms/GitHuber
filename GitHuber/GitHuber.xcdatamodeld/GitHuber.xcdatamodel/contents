@@ -7,6 +7,13 @@
         <attribute name="stars" optional="YES" attributeType="String"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserData" inverseName="repository" inverseEntity="UserData"/>
     </entity>
+    <entity name="StarredRepositoryData" representedClassName="StarredRepositoryData" syncable="YES" codeGenerationType="class">
+        <attribute name="language" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="owner" optional="YES" attributeType="String"/>
+        <attribute name="stars" optional="YES" attributeType="String"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UserData" inverseName="starredRepository" inverseEntity="UserData"/>
+    </entity>
     <entity name="UserData" representedClassName="UserData" syncable="YES" codeGenerationType="class">
         <attribute name="followers" optional="YES" attributeType="String"/>
         <attribute name="followersURL" optional="YES" attributeType="String"/>
@@ -16,9 +23,11 @@
         <attribute name="userAvatar" optional="YES" attributeType="Binary"/>
         <attribute name="username" optional="YES" attributeType="String"/>
         <relationship name="repository" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="RepositoryData" inverseName="user" inverseEntity="RepositoryData"/>
+        <relationship name="starredRepository" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="StarredRepositoryData" inverseName="user" inverseEntity="StarredRepositoryData"/>
     </entity>
     <elements>
-        <element name="UserData" positionX="-63" positionY="-18" width="128" height="149"/>
-        <element name="RepositoryData" positionX="-54" positionY="45" width="128" height="104"/>
+        <element name="RepositoryData" positionX="-34.82611083984375" positionY="-0.77154541015625" width="128" height="104"/>
+        <element name="UserData" positionX="23.0390625" positionY="-304.4122009277344" width="128" height="178"/>
+        <element name="StarredRepositoryData" positionX="0" positionY="-135" width="128" height="104"/>
     </elements>
 </model>
