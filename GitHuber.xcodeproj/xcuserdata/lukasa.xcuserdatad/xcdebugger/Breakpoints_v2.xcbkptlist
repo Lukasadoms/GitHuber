@@ -16,7 +16,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
             endingLineNumber = "36"
-            landmarkName = "postUserSearchQuery(username:minFollowers:minRepositories:sortedBy:)"
+            landmarkName = "searchForUsers(username:minFollowers:minRepositories:sortedBy:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
             endingLineNumber = "29"
-            landmarkName = "postUserSearchQuery(username:minFollowers:minRepositories:sortedBy:)"
+            landmarkName = "searchForUsers(username:minFollowers:minRepositories:sortedBy:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "postUserSearchQuery(username:minFollowers:minRepositories:sortedBy:)"
+            landmarkName = "searchForUsers(username:minFollowers:minRepositories:sortedBy:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -59,6 +59,7 @@ class RepositoryViewController: UIViewController {
     }
     
     @IBAction func starButtonTapped(_ sender: UIButton) {
+        //TODO
     }
     
     @IBAction func contributorsButtonTapped(_ sender: UIButton) {

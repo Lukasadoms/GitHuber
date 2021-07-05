@@ -26,7 +26,13 @@ struct NetworkRequest {
         case signIn
         case getUserList(username: String, type: UserListViewModel.UserlListType)
         case getRepoContributors(repository: Repository)
-        case searchUsers(username: String, minimumRepositories: String?, minimumFollowers: String?, sortedBy: String)
+        case searchUsers(
+                username: String,
+                minimumRepositories: String?,
+                minimumFollowers: String?,
+                sortedBy: String
+             )
+        case searchRepositories(name: String, language: String?, sortedBy: String)
         
         func networkRequest() -> NetworkRequest? {
             guard let url = url() else {
@@ -54,6 +60,8 @@ struct NetworkRequest {
             case .getRepoContributors:
                 return .get
             case .searchUsers:
+                return .get
+            case .searchRepositories:
                 return .get
             }
         }
@@ -101,6 +109,16 @@ struct NetworkRequest {
                 query.append("+sort:\(sortedBy)")
                 guard let encodedQuery = query.stringByAddingPercentEncodingForRFC3986() else { return nil }
                 return URL(string: "https://api.github.com/search/users?q=\(encodedQuery)")
+            case .searchRepositories(let name, let language, let sortedBy):
+                var query = "\(name)"
+                if
+                    let language = language,
+                    language != "" {
+                    query.append("+language:\(language)")
+                }
+                query.append("+sort:\(sortedBy)")
+                guard let encodedQuery = query.stringByAddingPercentEncodingForRFC3986() else { return nil }
+                return URL(string: "https://api.github.com/search/repositories?q=\(encodedQuery)")
             }
         }
         

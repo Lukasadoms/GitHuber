@@ -20,7 +20,7 @@
                 <outlet property="searchBar" destination="G32-9v-2gX" id="TXd-kI-LKg"/>
                 <outlet property="searchModePicker" destination="vw1-Ch-RRK" id="e8N-Cq-QGf"/>
                 <outlet property="userFilterStackView" destination="AW8-D6-Mg1" id="Jyc-nY-roK"/>
-                <outlet property="usersSortPicker" destination="PoA-Wm-fEC" id="5QY-jf-kVZ"/>
+                <outlet property="usersSortPicker" destination="PoA-Wm-fEC" id="4Si-ZV-asp"/>
                 <outlet property="view" destination="iN0-l3-epB" id="cfD-5R-cyM"/>
             </connections>
         </placeholder>
@@ -81,6 +81,9 @@
                                                 <segment title="Forks"/>
                                                 <segment title="Last updated"/>
                                             </segments>
+                                            <connections>
+                                                <action selector="sortPickerChangedValue:" destination="-1" eventType="valueChanged" id="FTZ-RP-ayp"/>
+                                            </connections>
                                         </segmentedControl>
                                     </subviews>
                                     <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -174,7 +177,7 @@
                                                 <segment title="Date joined"/>
                                             </segments>
                                             <connections>
-                                                <action selector="userSortPickerChangedValue:" destination="-1" eventType="valueChanged" id="yRN-1A-SQN"/>
+                                                <action selector="sortPickerChangedValue:" destination="-1" eventType="valueChanged" id="cSx-yR-gqb"/>
                                             </connections>
                                         </segmentedControl>
                                     </subviews>

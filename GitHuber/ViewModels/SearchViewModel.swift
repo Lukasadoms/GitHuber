@@ -11,10 +11,10 @@ class SearchViewModel {
     
     var isLoading = Observable<Bool>(false)
     var userList = Observable<[UserListCellModel]>([])
-    let repository = Observable<Repository?>(nil)
+    let repositories = Observable<[Repository]?>(nil)
     
     
-    func postUserSearchQuery(username: String, minFollowers: String?, minRepositories: String?, sortedBy: String ) {
+    func searchForUsers(username: String, minFollowers: String?, minRepositories: String?, sortedBy: String ) {
         isLoading.value = true
         
         NetworkRequest
@@ -52,6 +52,26 @@ class SearchViewModel {
                 case .failure(let error):
                     print("failed to get repositories, error: \(error)")
                 }
+            }
+    }
+    
+    func searchForRepositories(name: String, language: String?, sortedBy: String) {
+        isLoading.value = true
+        
+        NetworkRequest
+            .RequestType
+            .searchRepositories(name: name, language: language, sortedBy: sortedBy)
+            .networkRequest()?
+            .start(responseType: RepositorySearch.self) { [weak self] result in
+                switch result {
+                case .success(let response):
+                    guard let repos = response.object.items else { return }
+                    self?.repositories.value = repos
+                    
+                case .failure(let error):
+                    print(error)
+                }
+                self?.isLoading.value = false
             }
     }
 }

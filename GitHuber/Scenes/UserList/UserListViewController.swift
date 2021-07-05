@@ -40,6 +40,15 @@ class UserListViewController: UIViewController {
         viewModel.userList.bind { userlist in
             self.userListTableView.reloadData()
         }
+        
+        viewModel.isLoading.bind { isLoading in
+            if isLoading {
+                self.view.showBlurLoader()
+            }
+            else {
+                self.view.removeBluerLoader()
+            }
+        }
     }
     
     func setupTableView() {
