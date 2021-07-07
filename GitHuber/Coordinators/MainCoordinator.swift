@@ -5,19 +5,24 @@ class MainCoordinator {
     
     var navigationController: UINavigationController
     private let viewControllersFactory: ViewControllersFactory
+    private let userDataManager: UserDataManager
     
-    init(controller: UINavigationController,
-         viewControllersFactory: ViewControllersFactory) {
+    init(
+        controller: UINavigationController,
+        userDataManager: UserDataManager,
+        viewControllersFactory: ViewControllersFactory
+    ) {
         self.navigationController = controller
         self.viewControllersFactory = viewControllersFactory
+        self.userDataManager = userDataManager
     }
     
     func start() {
-        startLoginViewController()
+        startLoginViewController(userDataManager: userDataManager)
     }
     
-    func startLoginViewController() {
-        let loginViewController = viewControllersFactory.makeLoginViewController()
+    func startLoginViewController(userDataManager: UserDataManager) {
+        let loginViewController = viewControllersFactory.makeLoginViewController(userDataManager: userDataManager)
         loginViewController.coordinator = self
         
         navigationController.pushViewController(loginViewController, animated: true)

@@ -67,19 +67,19 @@ struct UserDataManager {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
-//    func getAccountFromDatabase (accountPhoneNumber: String) -> Account? {
-//
-//        do {
-//            let fetchRequest : NSFetchRequest<Account> = Account.fetchRequest()
-//            fetchRequest.predicate = NSPredicate(format: "phoneNumber == %@", accountPhoneNumber)
-//            let fetchedResults = try CoreDataManager.managedContext.fetch(fetchRequest)
-//            if let account = fetchedResults.first {
-//                return account
-//            }
-//        }
-//        catch {
-//            return nil
-//        }
-//        return nil
-//    }
+    func getAccountFromDatabase (accountLogin: String) throws -> UserData? {
+
+        do {
+            let fetchRequest : NSFetchRequest<UserData> = UserData.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "username == %@", accountLogin)
+            let fetchedResults = try CoreDataManager.managedContext.fetch(fetchRequest)
+            if let account = fetchedResults.first {
+                return account
+            }
+        }
+        catch {
+            throw error
+        }
+        return nil
+    }
 }

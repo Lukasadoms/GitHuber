@@ -10,8 +10,13 @@ import AuthenticationServices
 
 class LoginViewModel: NSObject {
     
+    let userDataManager: UserDataManager
     var isLoading = Observable<Bool>(false)
     var onLogin: ((_ user: User) -> Void)?
+    
+    init(userDataManager: UserDataManager) {
+        self.userDataManager = userDataManager
+    }
     
     func loginUser() {
         isLoading.value = true
