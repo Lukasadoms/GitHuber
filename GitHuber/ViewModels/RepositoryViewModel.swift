@@ -11,6 +11,7 @@ class RepositoryViewModel {
     let isLoading = Observable<Bool>(false)
     let repository = Observable<Repository?>(nil)
     let contributors = Observable<[User]>([])
+    var onShowLogin: (() -> Void)?
     
     init(repository: Repository) {
         self.repository.value = repository
@@ -32,7 +33,12 @@ class RepositoryViewModel {
                 case .success(let response):
                     self?.contributors.value = response.object
                 case .failure(let error):
-                    print(error)
+                    switch error {
+                    case .authenticationError:
+                        self?.onShowLogin?()
+                    default:
+                        print("failed to get contributors, error: \(error)")
+                    }
                 }
                 self?.isLoading.value = false
             }

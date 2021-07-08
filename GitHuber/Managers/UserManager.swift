@@ -14,6 +14,7 @@ struct UserManager {
     // MARK: Private Constants
     private static let accessTokenKey = "accessToken"
     private static let refreshTokenKey = "refreshToken"
+    private static let tokenExpiresIn = "expiresIn"
     private static let usernameKey = "username"
     
     // MARK: Properties
@@ -29,19 +30,41 @@ struct UserManager {
     
     static var refreshToken: String? {
         get {
-            UserDefaults.standard.string(forKey: refreshTokenKey)
+            keychain.get(refreshTokenKey)
         }
         set {
-            UserDefaults.standard.setValue(newValue, forKey: refreshTokenKey)
+            guard let refreshToken = newValue else { return }
+            keychain.set(refreshToken, forKey: refreshTokenKey)
+        }
+    }
+    
+    static var tokenExpiration: String? {
+        get {
+            UserDefaults.standard.string(forKey: tokenExpiresIn)
+        }
+        set {
+            guard let tokenExpiration = newValue else { return }
+            let nowDate = Int(Date().timeIntervalSince1970)
+            let expirationDate = Int(tokenExpiration)! + nowDate
+            UserDefaults.standard.setValue(expirationDate, forKey: tokenExpiresIn)
         }
     }
     
     static var username: String? {
         get {
-            UserDefaults.standard.string(forKey: usernameKey)
+            keychain.get(usernameKey)
         }
         set {
-            UserDefaults.standard.setValue(newValue, forKey: usernameKey)
+            guard let username = newValue else { return }
+            keychain.set(username, forKey: usernameKey)
         }
+    }
+    
+    static func isUserLoggedIn() -> Bool {
+        guard let expirationTimestamp = tokenExpiration else {
+            return false
+        }
+        let currentTimestamp = Date().timeIntervalSince1970
+        return Int(expirationTimestamp) ?? 0 > Int(currentTimestamp)
     }
 }

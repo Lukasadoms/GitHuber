@@ -56,6 +56,12 @@ class RepositoryViewController: UIViewController {
                 self?.view.removeBluerLoader()
             }
         }
+        
+        viewModel.onShowLogin = { [weak self] in self?.showLogin() }
+    }
+    
+    func showLogin() {
+        coordinator?.start()
     }
     
     @IBAction func starButtonTapped(_ sender: UIButton) {

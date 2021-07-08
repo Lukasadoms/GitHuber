@@ -16,6 +16,7 @@ class UserListViewModel {
     
     var isLoading = Observable<Bool>(false)
     var userList = Observable<[UserListCellModel]>([])
+    var onShowLogin: (() -> Void)?
     
     enum UserlListType {
         case following
@@ -82,7 +83,12 @@ class UserListViewModel {
                         }
                     }
                 case .failure(let error):
-                    print("failed to get userList, error: \(error)")
+                    switch error {
+                    case .authenticationError:
+                        self?.onShowLogin?()
+                    default:
+                        print("failed to get userList, error: \(error)")
+                    }
                 }
                 self?.isLoading.value = false
             }
@@ -93,12 +99,17 @@ class UserListViewModel {
             .RequestType
             .getUser(username: user.login)
             .networkRequest()?
-            .start(responseType: User.self) { result in
+            .start(responseType: User.self) { [weak self] result in
                 switch result {
                 case .success(let response):
                     completion(response.object)
                 case .failure(let error):
-                    print("failed to get repositories, error: \(error)")
+                    switch error {
+                    case .authenticationError:
+                        self?.onShowLogin?()
+                    default:
+                        print("failed to get userInfo, error: \(error)")
+                    }
                 }
             }
     }

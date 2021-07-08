@@ -29,7 +29,7 @@ class MainCoordinator {
     }
     
     func startUserViewController(user: User) {
-        let userViewController = viewControllersFactory.makeUserViewController(user: user)
+        let userViewController = viewControllersFactory.makeUserViewController(user: user, userDataManager: userDataManager)
         userViewController.coordinator = self
         navigationController.pushViewController(userViewController, animated: true)
     }

@@ -36,6 +36,7 @@ class LoginViewController: UIViewController {
                 self?.view.removeBluerLoader()
             }
         }
+        
         viewModel.onLogin = { [weak self] user in
             self?.coordinator?.startUserViewController(user: user)
         }

@@ -41,40 +41,51 @@ class UserViewController: UIViewController {
     }
     
     func bindViewModel() {
-        viewModel.userAvatar.bind { userAvatar in
-            self.userImage.image = userAvatar            
+        viewModel.userAvatar.bind { [weak self] userAvatar in
+            self?.userImage.image = userAvatar            
         }
         
-        viewModel.observableUser.bind { user in
+        viewModel.observableUser.bind { [weak self] user in
             guard
                 let user = user,
                 let followers = user.followers,
                 let following = user.following,
                 let repositories = user.repositories
             else { return }
-            self.followersButton.setTitle("Followers: \(followers)", for: .normal)
-            self.followingButton.setTitle("Following: \(following)", for: .normal)
-            self.repositoriesButton.setTitle("Repos: \(repositories)", for: .normal)
-            self.usernameLabel.text = user.login
-            self.fullNameLabel.text = user.name
+            self?.followersButton.setTitle("Followers: \(followers)", for: .normal)
+            self?.followingButton.setTitle("Following: \(following)", for: .normal)
+            self?.repositoriesButton.setTitle("Repos: \(repositories)", for: .normal)
+            self?.usernameLabel.text = user.login
+            self?.fullNameLabel.text = user.name
         }
         
-        viewModel.starredRepositories.bind { repositories in
-            self.staredReposButton.setTitle("Starred Repos: \(repositories.count)", for: .normal)
+        viewModel.starredRepositories.bind { [weak self] repositories in
+            self?.staredReposButton.setTitle("Starred Repos: \(repositories.count)", for: .normal)
         }
         
-        viewModel.isLoading.bind { isLoading in
+        viewModel.isLoading.bind { [weak self] isLoading in
             if isLoading {
-                self.view.showBlurLoader()
+                self?.view.showBlurLoader()
             }
             else {
-                self.view.removeBluerLoader()
+                self?.view.removeBluerLoader()
             }
         }
+        
+        viewModel.errorTitle.bind { [weak self] errorTitle in
+            guard let errorTitle = errorTitle else { return }
+            
+            self?.showErrorAlert(title: errorTitle)
+        }
+        
+        viewModel.onShowLogin = { [weak self] in self?.showLogin() }
+    }
+    
+    func showLogin() {
+        coordinator?.start()
     }
     
     func setupView() {
-        
         if viewModel.user.login == UserManager.username {
             navigationItem.hidesBackButton = true
             followButton.isHidden = true
@@ -88,7 +99,6 @@ class UserViewController: UIViewController {
     }
     
     func configureNavigationBar() {
-        
         let img = UIImage(systemName: "gear")!
         let imgWidth = img.size.width
         let imgHeight = img.size.height
@@ -101,6 +111,7 @@ class UserViewController: UIViewController {
     }
     
     @objc func settingsButtonPressed() {
+        showErrorAlert(title: "This function has not been implementes yet, check back soon")
     }
     
     @IBAction func followButtonTapped(_ sender: Any) {
@@ -129,5 +140,13 @@ class UserViewController: UIViewController {
     @IBAction func logoutButtonTapped(_ sender: Any) {
         viewModel.logoutUser()
         coordinator?.logout()
+    }
+}
+
+extension UserViewController {
+    private func showErrorAlert(title: String) {
+        let alertViewController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alertViewController.addAction(UIAlertAction(title: "Ok", style: .default))
+        show(alertViewController, sender: nil)
     }
 }

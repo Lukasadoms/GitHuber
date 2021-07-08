@@ -15,6 +15,7 @@ struct NetworkRequest {
         case networkCreationError
         case otherError
         case sessionExpired
+        case authenticationError
     }
     
     enum RequestType {
@@ -148,13 +149,13 @@ struct NetworkRequest {
     var url: URL
     
     // MARK: Methods
-    func start<T: Decodable>(responseType: T.Type, completionHandler: @escaping ((Result<NetworkResult<T>, Error>) -> Void)) {
+    func start<T: Decodable>(responseType: T.Type, completionHandler: @escaping ((Result<NetworkResult<T>, RequestError>) -> Void)) {
         var request = URLRequest(url: url)
-        print(url)
         request.httpMethod = method.rawValue
         if let accessToken = UserManager.accessToken {
             request.setValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
         }
+        
         print("\(UserManager.accessToken)")
         let session = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let response = response as? HTTPURLResponse else {
@@ -169,7 +170,7 @@ struct NetworkRequest {
             else {
                 DispatchQueue.main.async {
                     let error = error ?? NetworkRequest.RequestError.otherError
-                    completionHandler(.failure(error))
+                    completionHandler(.failure(RequestError.otherError))
                 }
                 return
             }
@@ -184,13 +185,19 @@ struct NetworkRequest {
                         dictionary[key] = value
                     }
                 }
+                print(dictionary)
                 DispatchQueue.main.async {
                     UserManager.accessToken = dictionary["access_token"]
                     UserManager.refreshToken = dictionary["refresh_token"]
+                    UserManager.tokenExpiration = dictionary["expires_in"]
                     completionHandler(.success((response, "Success" as! T)))
                 }
                 return
-            } else if let object = try? JSONDecoder().decode(T.self, from: data) {
+            }
+            guard UserManager.isUserLoggedIn() else { completionHandler(.failure(RequestError.authenticationError))
+                return
+            }
+            if let object = try? JSONDecoder().decode(T.self, from: data) {
                 DispatchQueue.main.async {
                     if let user = object as? User {
                         if UserManager.username == nil {

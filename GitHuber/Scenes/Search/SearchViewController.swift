@@ -64,14 +64,20 @@ class SearchViewController: UIViewController {
             self?.resultsTableView.reloadData()
         }
         
-        viewModel.isLoading.bind { isLoading in
+        viewModel.isLoading.bind { [weak self] isLoading in
             if isLoading {
-                self.view.showBlurLoader()
+                self?.view.showBlurLoader()
             }
             else {
-                self.view.removeBluerLoader()
+                self?.view.removeBluerLoader()
             }
         }
+        
+        viewModel.onShowLogin = { [weak self] in self?.showLogin() }
+    }
+    
+    func showLogin() {
+        coordinator?.start()
     }
     
     @IBAction func filterButtonPressed(_ sender: Any) {

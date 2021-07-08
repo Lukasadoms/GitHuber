@@ -12,7 +12,7 @@ class SearchViewModel {
     var isLoading = Observable<Bool>(false)
     var userList = Observable<[UserListCellModel]>([])
     let repositories = Observable<[Repository]?>(nil)
-    
+    var onShowLogin: (() -> Void)?
     
     func searchForUsers(username: String, minFollowers: String?, minRepositories: String?, sortedBy: String ) {
         isLoading.value = true
@@ -34,7 +34,12 @@ class SearchViewModel {
                         }
                     }
                 case .failure(let error):
-                    print(error)
+                    switch error {
+                    case .authenticationError:
+                        self?.onShowLogin?()
+                    default:
+                        print("failed to search users, error: \(error)")
+                    }
                 }
                 self?.isLoading.value = false
             }
@@ -45,12 +50,17 @@ class SearchViewModel {
             .RequestType
             .getUser(username: user.login)
             .networkRequest()?
-            .start(responseType: User.self) { result in
+            .start(responseType: User.self) { [ weak self ]result in
                 switch result {
                 case .success(let response):
                     completion(response.object)
                 case .failure(let error):
-                    print("failed to get repositories, error: \(error)")
+                    switch error {
+                    case .authenticationError:
+                        self?.onShowLogin?()
+                    default:
+                        print("failed to get repositories, error: \(error)")
+                    }
                 }
             }
     }
@@ -60,7 +70,11 @@ class SearchViewModel {
         
         NetworkRequest
             .RequestType
-            .searchRepositories(name: name, language: language, sortedBy: sortedBy)
+            .searchRepositories(
+                name: name,
+                language: language,
+                sortedBy: sortedBy
+            )
             .networkRequest()?
             .start(responseType: RepositorySearch.self) { [weak self] result in
                 switch result {
@@ -69,7 +83,12 @@ class SearchViewModel {
                     self?.repositories.value = repos
                     
                 case .failure(let error):
-                    print(error)
+                    switch error {
+                    case .authenticationError:
+                        self?.onShowLogin?()
+                    default:
+                        print("failed to search repositories, error: \(error)")
+                    }
                 }
                 self?.isLoading.value = false
             }

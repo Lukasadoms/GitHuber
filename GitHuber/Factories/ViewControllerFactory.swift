@@ -4,7 +4,7 @@ import Foundation
 protocol ViewControllersFactory {
 
     func makeLoginViewController(userDataManager: UserDataManager) -> LoginViewController
-    func makeUserViewController(user: User) -> UserViewController
+    func makeUserViewController(user: User, userDataManager: UserDataManager) -> UserViewController
     func makeUserListViewController(user: User?, type: UserListViewModel.UserlListType?, users: [User]?) -> UserListViewController
     func makeRepositoryListViewController(repositories: [Repository]) -> RepositoryListViewController
     func makeRepositoryViewController(repository: Repository) -> RepositoryViewController
@@ -19,13 +19,13 @@ extension DependencyContainer: ViewControllersFactory {
     }
     
     func makeLoginViewController(userDataManager: UserDataManager) -> LoginViewController {
-        let viewModel = LoginViewModel(userDataManager: userDataManager)
+        let viewModel = LoginViewModel()
         let loginViewController = LoginViewController(viewModel: viewModel)
         return loginViewController
     }
     
-    func makeUserViewController(user: User) -> UserViewController {
-        let viewModel = UserViewModel(user: user, keychain: keychain)
+    func makeUserViewController(user: User, userDataManager: UserDataManager) -> UserViewController {
+        let viewModel = UserViewModel(user: user, keychain: keychain, userDataManager: userDataManager)
         let userViewController = UserViewController(viewModel: viewModel)
         return userViewController
     }

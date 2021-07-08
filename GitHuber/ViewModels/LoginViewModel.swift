@@ -10,13 +10,8 @@ import AuthenticationServices
 
 class LoginViewModel: NSObject {
     
-    let userDataManager: UserDataManager
     var isLoading = Observable<Bool>(false)
     var onLogin: ((_ user: User) -> Void)?
-    
-    init(userDataManager: UserDataManager) {
-        self.userDataManager = userDataManager
-    }
     
     func loginUser() {
         isLoading.value = true
@@ -43,6 +38,7 @@ class LoginViewModel: NSObject {
                 self?.isLoading.value = false
                 return
             }
+            
             networkRequest.start(responseType: String.self) { result in
                 switch result {
                 case .success(let data):
@@ -50,7 +46,6 @@ class LoginViewModel: NSObject {
                     print(data)
                 case .failure(let error):
                     print("Failed to exchange access code for tokens: \(error)")
-                    
                 }
             }
             self?.isLoading.value = false
@@ -68,6 +63,12 @@ class LoginViewModel: NSObject {
         getLoggedInUser()
     }
     
+//    func refreshToken() {
+//        guard let refreshToken = UserManager.refreshToken else { return }
+//        NetworkRequest.RequestType.codeExchange(code: refreshToken).networkRequest()?.start(responseType: User.self) { result in
+//            }
+//    }
+    
     private func getLoggedInUser() {
         
         NetworkRequest
@@ -75,7 +76,6 @@ class LoginViewModel: NSObject {
             .getLoggedInUser
             .networkRequest()?
             .start(responseType: User.self) { [weak self] result in
-                
                 switch result {
                 case .success(let response):
                     print("success, user: \(response.object)")

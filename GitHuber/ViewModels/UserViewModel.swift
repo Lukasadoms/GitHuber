@@ -9,17 +9,22 @@ import UIKit
 
 class UserViewModel {
     
-    var isLoading = Observable<Bool>(false)
+    
     var user: User
+    let userDataManager: UserDataManager
     private let keychain: KeychainSwift
     var observableUser = Observable<User?>(nil)
     var userAvatar = Observable<UIImage?>(nil)
+    var isLoading = Observable<Bool>(false)
+    var errorTitle = Observable<String?>(nil)
     var repositories = [Repository]([])
     var starredRepositories = Observable<[Repository]>([])
+    var onShowLogin: (() -> Void)?
     
-    init(user: User, keychain: KeychainSwift) {
+    init(user: User, keychain: KeychainSwift, userDataManager: UserDataManager) {
         self.keychain = keychain
         self.user = user
+        self.userDataManager = userDataManager
     }
     
     required init?(coder: NSCoder) {
@@ -36,8 +41,7 @@ class UserViewModel {
     }
     
     func logoutUser() {
-        keychain.delete("accessToken")
-        keychain.delete("username")
+        keychain.clear()
     }
     
     private func getRepositories(username: String) {
@@ -52,8 +56,15 @@ class UserViewModel {
                 switch result {
                 case .success(let response):
                     self?.repositories = response.object
+                    guard self?.user.login == UserManager.username else { return }
+                    self?.saveRepositoriesToDatabase(repositories: response.object, starred: false)
                 case .failure(let error):
-                    print("failed to get repositories, error: \(error)")
+                    switch error {
+                    case .authenticationError:
+                        self?.onShowLogin?()
+                    default:
+                        print("failed to get repositories, error: \(error)")
+                    }
                 }
             }
     }
@@ -69,10 +80,26 @@ class UserViewModel {
                 switch result {
                 case .success(let response):
                     self?.starredRepositories.value = response.object
+                    guard self?.user.login == UserManager.username else { return }
+                    self?.saveRepositoriesToDatabase(repositories: response.object, starred: true)
                 case .failure(let error):
-                    print("failed to get repositories, error: \(error)")
+                    switch error {
+                    case .authenticationError:
+                        self?.onShowLogin?()
+                    default:
+                        print("failed to get repositories, error: \(error)")
+                    }
                 }
             }
+    }
+    
+    private func saveRepositoriesToDatabase(repositories: [Repository], starred: Bool) {
+        do {
+            try userDataManager.saveAccountRepositories(userName: user.login, repositories: repositories, starred: starred)
+        }
+        catch {
+            errorTitle.value = "failed to save repositories to database"
+        }
     }
     
     private func getUser(username: String) {
@@ -87,8 +114,19 @@ class UserViewModel {
                 case .success(let response):
                     print("success, user: \(response.object.login)")
                     self?.observableUser.value = response.object
+                    do {
+                        try self?.userDataManager.saveAccountToDatabase(user: response.object)
+                    }
+                    catch {
+                        self?.errorTitle.value = "failed to save account to database"
+                    }
                 case .failure(let error):
-                    print("Failed to get user, or there is no valid/active session: \(error.localizedDescription)")
+                    switch error {
+                    case .authenticationError:
+                        self?.onShowLogin?()
+                    default:
+                        print("Failed to get user, or there is no valid/active session: \(error.localizedDescription)")
+                    }
                 }
             }
     }

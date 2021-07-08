@@ -10,7 +10,40 @@ import CoreData
 
 struct UserDataManager {
     
-    func saveAccountToDatabase(user: User, repositories: [Repository], starredRepositories: [Repository]) throws {
+    func saveAccountRepositories(
+        userName: String,
+        repositories: [Repository],
+        starred: Bool
+    ) throws {
+        let account = try getAccountFromDatabase(accountLogin: userName)
+        for repository in repositories {
+            if starred {
+                let repositoryData = RepositoryData(context: CoreDataManager.managedContext)
+                repositoryData.language = repository.language
+                repositoryData.name = repository.name
+                repositoryData.owner = repository.owner.login
+                repositoryData.stars = "\(repository.stars)"
+                guard let account = account else { return }
+                account.addToRepository(repositoryData)
+            } else {
+                let repositoryData = StarredRepositoryData(context: CoreDataManager.managedContext)
+                repositoryData.language = repository.language
+                repositoryData.name = repository.name
+                repositoryData.owner = repository.owner.login
+                repositoryData.stars = "\(repository.stars)"
+                guard let account = account else { return }
+                account.addToStarredRepository(repositoryData)
+            }
+        }
+        do {
+            try CoreDataManager.saveContext()
+        }
+        catch {
+            throw error
+        }
+    }
+    
+    func saveAccountToDatabase(user: User) throws {
         let account = UserData(context: CoreDataManager.managedContext)
         account.followers = "\(user.followers ?? 0)"
         account.following = "\(user.following ?? 0)"
@@ -22,23 +55,6 @@ struct UserDataManager {
                 account.userAvatar = completion.pngData()
             }
         }
-        for repository in repositories {
-            let repositoryData = RepositoryData(context: CoreDataManager.managedContext)
-            repositoryData.language = repository.language
-            repositoryData.name = repository.name
-            repositoryData.owner = repository.owner.login
-            repositoryData.stars = "\(repository.stars)"
-            account.addToRepository(repositoryData)
-        }
-        for repository in starredRepositories {
-            let repositoryData = StarredRepositoryData(context: CoreDataManager.managedContext)
-            repositoryData.language = repository.language
-            repositoryData.name = repository.name
-            repositoryData.owner = repository.owner.login
-            repositoryData.stars = "\(repository.stars)"
-            account.addToStarredRepository(repositoryData)
-        }
-        
         do {
             try CoreDataManager.saveContext()
         }
