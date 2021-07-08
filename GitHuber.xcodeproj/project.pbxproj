@@ -22,7 +22,6 @@
 		C9164F7C26846C6F0085CFF8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9164F7B26846C6F0085CFF8 /* Assets.xcassets */; };
 		C9164F7F26846C6F0085CFF8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9164F7D26846C6F0085CFF8 /* LaunchScreen.storyboard */; };
 		C9164F8A26846C6F0085CFF8 /* GitHuberTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164F8926846C6F0085CFF8 /* GitHuberTests.swift */; };
-		C9164F9526846C6F0085CFF8 /* GitHuberUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164F9426846C6F0085CFF8 /* GitHuberUITests.swift */; };
 		C9164FA326846CE20085CFF8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164FA226846CE20085CFF8 /* LoginViewController.swift */; };
 		C9164FA526846CF70085CFF8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9164FA426846CF70085CFF8 /* LoginViewController.xib */; };
 		C9164FA72684710A0085CFF8 /* DependancyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9164FA62684710A0085CFF8 /* DependancyContainer.swift */; };
@@ -93,8 +92,6 @@
 		C9164F8926846C6F0085CFF8 /* GitHuberTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHuberTests.swift; sourceTree = "<group>"; };
 		C9164F8B26846C6F0085CFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9164F9026846C6F0085CFF8 /* GitHuberUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GitHuberUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9164F9426846C6F0085CFF8 /* GitHuberUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitHuberUITests.swift; sourceTree = "<group>"; };
-		C9164F9626846C6F0085CFF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9164FA226846CE20085CFF8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C9164FA426846CF70085CFF8 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		C9164FA62684710A0085CFF8 /* DependancyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependancyContainer.swift; sourceTree = "<group>"; };
@@ -167,7 +164,6 @@
 				C9164FA8268471840085CFF8 /* KeyChainSwift.swift */,
 				C9164F6E26846C6D0085CFF8 /* GitHuber */,
 				C9164F8826846C6F0085CFF8 /* GitHuberTests */,
-				C9164F9326846C6F0085CFF8 /* GitHuberUITests */,
 				C9164F6D26846C6D0085CFF8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -209,15 +205,6 @@
 				C9164F8B26846C6F0085CFF8 /* Info.plist */,
 			);
 			path = GitHuberTests;
-			sourceTree = "<group>";
-		};
-		C9164F9326846C6F0085CFF8 /* GitHuberUITests */ = {
-			isa = PBXGroup;
-			children = (
-				C9164F9426846C6F0085CFF8 /* GitHuberUITests.swift */,
-				C9164F9626846C6F0085CFF8 /* Info.plist */,
-			);
-			path = GitHuberUITests;
 			sourceTree = "<group>";
 		};
 		C9164FAA268472220085CFF8 /* Coordinators */ = {
@@ -533,7 +520,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9164F9526846C6F0085CFF8 /* GitHuberUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,7 +712,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXYM6M435R;
 				INFOPLIST_FILE = GitHuberTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -748,7 +734,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VXYM6M435R;
 				INFOPLIST_FILE = GitHuberTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

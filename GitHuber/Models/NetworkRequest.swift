@@ -1,10 +1,8 @@
 
-
 import Foundation
 
 struct NetworkRequest {
     
-    static let keychain = KeychainSwift()
     enum HTTPMethod: String {
         case get = "GET"
         case post = "POST"
@@ -147,6 +145,7 @@ struct NetworkRequest {
     // MARK: Properties
     var method: HTTPMethod
     var url: URL
+    static let keychain = KeychainSwift()
     
     // MARK: Methods
     func start<T: Decodable>(responseType: T.Type, completionHandler: @escaping ((Result<NetworkResult<T>, RequestError>) -> Void)) {
@@ -155,8 +154,6 @@ struct NetworkRequest {
         if let accessToken = UserManager.accessToken {
             request.setValue("token \(accessToken)", forHTTPHeaderField: "Authorization")
         }
-        
-        print("\(UserManager.accessToken)")
         let session = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let response = response as? HTTPURLResponse else {
                 DispatchQueue.main.async {
@@ -169,7 +166,7 @@ struct NetworkRequest {
                 let data = data
             else {
                 DispatchQueue.main.async {
-                    let error = error ?? NetworkRequest.RequestError.otherError
+                    _ = error ?? NetworkRequest.RequestError.otherError
                     completionHandler(.failure(RequestError.otherError))
                 }
                 return

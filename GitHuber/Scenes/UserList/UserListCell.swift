@@ -24,6 +24,4 @@ final class UserListCell: UITableViewCell {
         userImageView.layer.cornerRadius = userImageView.frame.size.width / 2
         userImageView.clipsToBounds = true
     }
-    
-    
 }

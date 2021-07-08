@@ -12,6 +12,11 @@ class LoginViewModel: NSObject {
     
     var isLoading = Observable<Bool>(false)
     var onLogin: ((_ user: User) -> Void)?
+    let userDataManager: UserDataManager
+    
+    init(userDataManager: UserDataManager) {
+        self.userDataManager = userDataManager
+    }
     
     func loginUser() {
         isLoading.value = true
@@ -38,7 +43,6 @@ class LoginViewModel: NSObject {
                 self?.isLoading.value = false
                 return
             }
-            
             networkRequest.start(responseType: String.self) { result in
                 switch result {
                 case .success(let data):
@@ -63,12 +67,6 @@ class LoginViewModel: NSObject {
         getLoggedInUser()
     }
     
-//    func refreshToken() {
-//        guard let refreshToken = UserManager.refreshToken else { return }
-//        NetworkRequest.RequestType.codeExchange(code: refreshToken).networkRequest()?.start(responseType: User.self) { result in
-//            }
-//    }
-    
     private func getLoggedInUser() {
         
         NetworkRequest
@@ -83,6 +81,15 @@ class LoginViewModel: NSObject {
                     self?.onLogin?(response.object)
                 case .failure(let error):
                     print("Failed to get user, or there is no valid/active session: \(error.localizedDescription)")
+                    guard let username = UserManager.username else { return }
+                    do {
+                        guard let userData = try self?.userDataManager.getAccountFromDatabase(accountLogin: username) else { return }
+                        let user = User(login: userData.username ?? "" , name: userData.fullname, userAvatar: "", followers: Int(userData.followers ?? ""), following: Int(userData.following ?? ""), repositories: Int(userData.repositories ?? ""), followersURL: userData.followersURL)
+                        self?.onLogin?(user)
+                    }
+                    catch {
+                        print (error)
+                    }
                     self?.isLoading.value = false
                 }
             }

@@ -7,161 +7,97 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8E4B7B74-042B-4826-B0F6-9EC1C17958D9"
+            uuid = "A247689C-A19E-4480-BB6C-29DD01F6B288"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GitHuber/ViewModels/SearchViewModel.swift"
+            filePath = "GitHuber/ViewModels/UserListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "36"
-            endingLineNumber = "36"
-            landmarkName = "searchForUsers(username:minFollowers:minRepositories:sortedBy:)"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "getUserListFromAPI(user:type:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5DBEE09C-30C9-4F68-B4AD-8DE682E2A96F"
+            uuid = "7D7A1A9F-5332-4A80-B8BF-E8C17000DAC1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GitHuber/ViewModels/SearchViewModel.swift"
+            filePath = "GitHuber/ViewModels/UserListViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "searchForUsers(username:minFollowers:minRepositories:sortedBy:)"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "getUserListFromAPI(user:type:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "7D7A1A9F-5332-4A80-B8BF-E8C17000DAC1 - 91f952ff352d4109"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(response: __C.NSHTTPURLResponse, object: Swift.Array&lt;GitHuber.User&gt;), GitHuber.NetworkRequest.RequestError&gt;) -&gt; () in GitHuber.UserListViewModel.(getUserListFromAPI in _44615605D708C72CBBA7E23EAEA9F3A5)(user: GitHuber.User, type: GitHuber.UserListViewModel.UserlListType) -&gt; ()"
+                  moduleName = "GitHuber"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lukasa/Documents/GitHub/GitHuber/GitHuber/ViewModels/UserListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "375">
+               </Location>
+               <Location
+                  uuid = "7D7A1A9F-5332-4A80-B8BF-E8C17000DAC1 - 91f952ff352d4109"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Result&lt;(response: __C.NSHTTPURLResponse, object: Swift.Array&lt;GitHuber.User&gt;), GitHuber.NetworkRequest.RequestError&gt;) -&gt; () in GitHuber.UserListViewModel.(getUserListFromAPI in _44615605D708C72CBBA7E23EAEA9F3A5)(user: GitHuber.User, type: GitHuber.UserListViewModel.UserlListType) -&gt; ()"
+                  moduleName = "GitHuber"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/lukasa/Documents/GitHub/GitHuber/GitHuber/ViewModels/UserListViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "75"
+                  endingLineNumber = "75"
+                  offsetFromSymbolStart = "409">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1716121C-C175-4B2E-9715-6FC0331E588D"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GitHuber/ViewModels/UserListViewModel.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "getUserListFromAPI(user:type:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8C38A9AC-6A44-431C-8C4D-F189B5E5E75D"
+            uuid = "B63DCCD0-E0ED-4874-B6BF-662B7FBDAED1"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GitHuber/ViewModels/SearchViewModel.swift"
+            filePath = "GitHuber/Factories/ViewControllerFactory.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "searchForUsers(username:minFollowers:minRepositories:sortedBy:)"
+            landmarkName = "makeUserListViewController(user:type:users:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "44306118-A7A2-44FC-AACB-508653E6C324"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GitHuber/ViewModels/UserViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
-            landmarkName = "saveRepositoriesToDatabase(repositories:starred:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2F24F0C1-E4EC-4944-9AE8-1409F52DC71E"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GitHuber/ViewModels/UserViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "118"
-            endingLineNumber = "118"
-            landmarkName = "getUser(username:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E8F17366-E142-4C1E-8815-D6C3781D806C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GitHuber/Managers/UserDataManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
-            landmarkName = "saveAccountToDatabase(user:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "758C73C4-05F9-4745-A1FB-CF889EA7B0EC"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GitHuber/Managers/UserDataManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "saveAccountToDatabase(user:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B31DE1E0-3F20-4D66-9767-107B7A96B9C4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GitHuber/Managers/UserDataManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "saveAccountToDatabase(user:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "B31DE1E0-3F20-4D66-9767-107B7A96B9C4 - bab15202afab7dfd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GitHuber.UserDataManager.saveAccountToDatabase(user: GitHuber.User) throws -&gt; ()"
-                  moduleName = "GitHuber"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lukasa/Documents/GitHub/GitHuber/GitHuber/Managers/UserDataManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "2413">
-               </Location>
-               <Location
-                  uuid = "B31DE1E0-3F20-4D66-9767-107B7A96B9C4 - bab15202afab7dfd"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "GitHuber.UserDataManager.saveAccountToDatabase(user: GitHuber.User) throws -&gt; ()"
-                  moduleName = "GitHuber"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/lukasa/Documents/GitHub/GitHuber/GitHuber/Managers/UserDataManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "62"
-                  endingLineNumber = "62"
-                  offsetFromSymbolStart = "2498">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -1,13 +1,9 @@
-//
-//  SearchViewController.swift
-//  GitHuber
-//
-//  Created by Lukas Adomavicius on 2021-07-03.
-//
 
 import UIKit
 
 class SearchViewController: UIViewController {
+    
+    // MARK: Properties
     
     let viewModel: SearchViewModel
     weak var coordinator: MainCoordinator?
@@ -24,6 +20,8 @@ class SearchViewController: UIViewController {
     @IBOutlet weak var repositoryFilterStackView: UIStackView!
     @IBOutlet weak var userFilterStackView: UIStackView!
     @IBOutlet weak var resultsTableView: UITableView!
+    
+    // MARK: Lifecycle
     
     init(viewModel: SearchViewModel) {
         self.viewModel = viewModel
@@ -55,6 +53,8 @@ class SearchViewController: UIViewController {
         repositoryFilterStackView.isHidden = true
     }
     
+    // MARK: UI Setup
+    
     func bindViewModel() {
         viewModel.userList.bind { [weak self] userList in
             self?.resultsTableView.reloadData()
@@ -75,6 +75,8 @@ class SearchViewController: UIViewController {
         
         viewModel.onShowLogin = { [weak self] in self?.showLogin() }
     }
+    
+    // MARK: Methods
     
     func showLogin() {
         coordinator?.start()
@@ -103,6 +105,8 @@ class SearchViewController: UIViewController {
     @IBAction func sortPickerChangedValue(_ sender: UISegmentedControl) {
         startSearch()
     }
+    
+    
     
     func getUserList() {
         guard let text = searchBar.text else { return }
@@ -135,6 +139,8 @@ class SearchViewController: UIViewController {
         }
     }
 }
+
+// MARK: UITableView Methods
 
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -189,11 +195,15 @@ extension SearchViewController: UITableViewDelegate {
     }
 }
 
+// MARK: UISearchBarDelegate Methods
+
 extension SearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         startSearch()
     }
 }
+
+// MARK: UITextFieldDelegate Methods
 
 extension SearchViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {

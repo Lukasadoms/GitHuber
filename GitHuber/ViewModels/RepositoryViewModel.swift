@@ -23,7 +23,6 @@ class RepositoryViewModel {
     }
     
     private func getRepoContributors(repository: Repository) {
-        
         NetworkRequest
             .RequestType
             .getRepoContributors(repository: repository)

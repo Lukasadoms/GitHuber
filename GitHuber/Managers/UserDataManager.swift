@@ -1,9 +1,3 @@
-//
-//  UserDataManager.swift
-//  GitHuber
-//
-//  Created by Lukas Adomavicius on 2021-07-05.
-//
 
 import UIKit
 import CoreData
@@ -63,7 +57,7 @@ struct UserDataManager {
         }
     }
     
-    func downloadImage(from url: URL, completion: @escaping (UIImage) -> () ) {
+    private func downloadImage(from url: URL, completion: @escaping (UIImage) -> () ) {
         getData(from: url) { data, response, error in
             guard let data = data, error == nil else { return }
             guard let image = UIImage(data: data) else {
@@ -79,12 +73,11 @@ struct UserDataManager {
         }
     }
     
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+    private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
     
     func getAccountFromDatabase (accountLogin: String) throws -> UserData? {
-
         do {
             let fetchRequest : NSFetchRequest<UserData> = UserData.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "username == %@", accountLogin)

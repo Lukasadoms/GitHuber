@@ -25,8 +25,7 @@ class LoginViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
-    func bindViewModel() {
-        
+    private func bindViewModel() {
         viewModel.appeared()
         viewModel.isLoading.bind { [weak self] isLoading in
             if isLoading {

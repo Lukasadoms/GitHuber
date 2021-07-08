@@ -9,6 +9,8 @@ import UIKit
 
 class RepositoryViewController: UIViewController {
     
+    // MARK: Properties
+    
     let viewModel: RepositoryViewModel
     weak var coordinator: MainCoordinator?
     
@@ -19,6 +21,8 @@ class RepositoryViewController: UIViewController {
     @IBOutlet weak var languageLabel: UILabel!
     @IBOutlet weak var starButton: UIButton!
     @IBOutlet weak var contributorsButton: UIButton!
+    
+    // MARK: LifeCycle
     
     init(viewModel: RepositoryViewModel) {
         self.viewModel = viewModel
@@ -35,6 +39,8 @@ class RepositoryViewController: UIViewController {
         bindViewModel()
     }
     
+    // MARK: UI Setup
+    
     func bindViewModel() {
         viewModel.repository.bind { repository in
             guard let repository = repository else { return }
@@ -42,6 +48,7 @@ class RepositoryViewController: UIViewController {
             self.ownerLabel.text = "Owner: \(repository.owner.login)"
             self.numberOfStarsLabel.text = "Starred: \(repository.stars)"
             self.languageLabel.text = "Language: \(repository.language ?? "N/A")"
+            self.repositoryDescriptionLabel.text = "Description: \(repository.description ?? "N/A")"
         }
         
         viewModel.contributors.bind { contributors in
@@ -65,10 +72,21 @@ class RepositoryViewController: UIViewController {
     }
     
     @IBAction func starButtonTapped(_ sender: UIButton) {
+        showErrorAlert(title: "This function has not been implemented yet, check back soon :)")
         //TODO
     }
     
     @IBAction func contributorsButtonTapped(_ sender: UIButton) {
         coordinator?.startUserListViewController(user: nil, type: .contributors, users: viewModel.contributors.value)
+    }
+}
+
+// MARK: Alert Method
+
+extension RepositoryViewController {
+    private func showErrorAlert(title: String) {
+        let alertViewController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
+        alertViewController.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alertViewController, animated: true)
     }
 }

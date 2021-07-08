@@ -9,7 +9,6 @@ import UIKit
 
 class UserViewModel {
     
-    
     var user: User
     let userDataManager: UserDataManager
     private let keychain: KeychainSwift
@@ -17,7 +16,7 @@ class UserViewModel {
     var userAvatar = Observable<UIImage?>(nil)
     var isLoading = Observable<Bool>(false)
     var errorTitle = Observable<String?>(nil)
-    var repositories = [Repository]([])
+    var repositories = Observable<[Repository]>([])
     var starredRepositories = Observable<[Repository]>([])
     var onShowLogin: (() -> Void)?
     
@@ -32,12 +31,34 @@ class UserViewModel {
     }
     
     func start() {
+        loadUserFromStorage(username: user.login)
         getUser(username: user.login)
         observableUser.value = user
         getRepositories(username: user.login)
         getStarredRepositories(username: user.login)
         guard let url = URL(string: user.userAvatar) else { return }
         downloadImage(from: url)
+    }
+    
+    private func loadUserFromStorage(username: String) {
+        do {
+            guard let userData = try userDataManager.getAccountFromDatabase(accountLogin: username) else { return }
+            let userFromDatabase = User(login: userData.username ?? "" , name: userData.fullname, userAvatar: "", followers: Int(userData.followers ?? ""), following: Int(userData.following ?? ""), repositories: Int(userData.repositories ?? ""), followersURL: userData.followersURL)
+            observableUser.value = userFromDatabase
+            guard let imageData = userData.userAvatar else { return }
+            userAvatar.value = UIImage(data: imageData)
+        }
+        catch {
+            print(error)
+        }
+    }
+    
+    private func loadRepositoriesFromStorage(username: String) {
+        //TODO
+    }
+    
+    private func loadStarredRepositoriesFromStorage(username: String) {
+        //TODO
     }
     
     func logoutUser() {
@@ -55,7 +76,7 @@ class UserViewModel {
                 self?.isLoading.value = false
                 switch result {
                 case .success(let response):
-                    self?.repositories = response.object
+                    self?.repositories.value = response.object
                     guard self?.user.login == UserManager.username else { return }
                     self?.saveRepositoriesToDatabase(repositories: response.object, starred: false)
                 case .failure(let error):
@@ -131,7 +152,7 @@ class UserViewModel {
             }
     }
     
-    func downloadImage(from url: URL) {
+    private func downloadImage(from url: URL) {
         getData(from: url) { data, response, error in
             guard let data = data, error == nil else { return }
             guard let userImage = UIImage(data: data) else { return }
@@ -141,7 +162,7 @@ class UserViewModel {
         }
     }
     
-    func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
+    private func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
     }
 }

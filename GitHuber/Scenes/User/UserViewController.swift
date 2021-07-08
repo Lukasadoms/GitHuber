@@ -9,6 +9,8 @@ import UIKit
 
 class UserViewController: UIViewController {
     
+    // MARK: Properties
+    
     private let viewModel: UserViewModel
     weak var coordinator: MainCoordinator?
     
@@ -22,6 +24,8 @@ class UserViewController: UIViewController {
     @IBOutlet weak var staredReposButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     @IBOutlet weak var searchButton: UIButton!
+    
+    // MARK: LifeCycle
     
     init(viewModel: UserViewModel) {
         self.viewModel = viewModel
@@ -39,6 +43,8 @@ class UserViewController: UIViewController {
         viewModel.start()
         setupView()
     }
+    
+    // MARK: UI Setup
     
     func bindViewModel() {
         viewModel.userAvatar.bind { [weak self] userAvatar in
@@ -81,10 +87,6 @@ class UserViewController: UIViewController {
         viewModel.onShowLogin = { [weak self] in self?.showLogin() }
     }
     
-    func showLogin() {
-        coordinator?.start()
-    }
-    
     func setupView() {
         if viewModel.user.login == UserManager.username {
             navigationItem.hidesBackButton = true
@@ -110,8 +112,11 @@ class UserViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = .darkGray
     }
     
+    // MARK: Navigation
+    
     @objc func settingsButtonPressed() {
-        showErrorAlert(title: "This function has not been implementes yet, check back soon")
+        showErrorAlert(title: "This function has not been implemented yet, check back soon :)")
+        //TODO
     }
     
     @IBAction func followButtonTapped(_ sender: Any) {
@@ -130,7 +135,7 @@ class UserViewController: UIViewController {
     }
     
     @IBAction func reposButtonTapped(_ sender: Any) {
-        coordinator?.startRepositoryListViewController(repositories: viewModel.repositories)
+        coordinator?.startRepositoryListViewController(repositories: viewModel.repositories.value)
     }
     
     @IBAction func starredReposTapped(_ sender: Any) {
@@ -141,12 +146,18 @@ class UserViewController: UIViewController {
         viewModel.logoutUser()
         coordinator?.logout()
     }
+    
+    func showLogin() {
+        coordinator?.start()
+    }
 }
+
+// MARK: Alert Method
 
 extension UserViewController {
     private func showErrorAlert(title: String) {
         let alertViewController = UIAlertController(title: title, message: nil, preferredStyle: .alert)
         alertViewController.addAction(UIAlertAction(title: "Ok", style: .default))
-        show(alertViewController, sender: nil)
+        present(alertViewController, animated: true)
     }
 }

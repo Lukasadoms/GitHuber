@@ -17,11 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let nc = UINavigationController()
-        let userDataManager = UserDataManager()
         let dependencyContainer = DependencyContainer()
         coordinator = MainCoordinator(
             controller: nc,
-            userDataManager: userDataManager,
             viewControllersFactory: dependencyContainer
             )
         coordinator?.start()

@@ -1,18 +1,15 @@
-//
-//  RepositoryList.swift
-//  GitHuber
-//
-//  Created by Lukas Adomavicius on 6/26/21.
-//
 
 import UIKit
 
 class RepositoryListViewController: UIViewController {
     
+    // MARK: Properties
+    
     let viewModel: RepositoryListViewModel
     weak var coordinator: MainCoordinator?
-    
     @IBOutlet weak var repositoryListTableView: UITableView!
+    
+    // MARK: Lifecycle
     
     init(viewModel: RepositoryListViewModel) {
         self.viewModel = viewModel
@@ -28,6 +25,8 @@ class RepositoryListViewController: UIViewController {
         setupTableView()
     }
     
+    // MARK: UI Setup
+    
     func setupTableView() {
         let cellNib = UINib(nibName: "RepositoryListCell", bundle: nil)
         repositoryListTableView.register(cellNib, forCellReuseIdentifier: "RepositoryListCell")
@@ -36,6 +35,8 @@ class RepositoryListViewController: UIViewController {
         self.title = "GitHuber Repos List"
     }
 }
+
+// MARK: UITableView methods
 
 extension RepositoryListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -19,7 +19,12 @@ class SearchViewModel {
         
         NetworkRequest
             .RequestType
-            .searchUsers(username: username, minimumRepositories: minRepositories, minimumFollowers: minFollowers, sortedBy: sortedBy)
+            .searchUsers(
+                username: username,
+                minimumRepositories: minRepositories,
+                minimumFollowers: minFollowers,
+                sortedBy: sortedBy
+            )
             .networkRequest()?
             .start(responseType: UserSearch.self) { [weak self] result in
                 switch result {
@@ -65,7 +70,7 @@ class SearchViewModel {
             }
     }
     
-    func searchForRepositories(name: String, language: String?, sortedBy: String) {
+   func searchForRepositories(name: String, language: String?, sortedBy: String) {
         isLoading.value = true
         
         NetworkRequest

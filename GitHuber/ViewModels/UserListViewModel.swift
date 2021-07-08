@@ -47,14 +47,14 @@ class UserListViewModel {
     
     func start() {
         if let user = user, let type = type {
-            getUserList(user: user, type: type)
+            getUserListFromAPI(user: user, type: type)
         }
         else {
-            loadUserList()
+            loadUserListFromMemory()
         }
     }
     
-    private func loadUserList() {
+    private func loadUserListFromMemory() {
         guard let users = users else { return }
         for user in users {
             var userCellModel = UserListCellModel(user: user)
@@ -65,9 +65,7 @@ class UserListViewModel {
         }
     }
     
-    private func getUserList(user: User, type: UserlListType) {
-        isLoading.value = true
-        
+    private func getUserListFromAPI(user: User, type: UserlListType) {
         NetworkRequest
             .RequestType
             .getUserList(username: user.login, type: type)
@@ -90,7 +88,6 @@ class UserListViewModel {
                         print("failed to get userList, error: \(error)")
                     }
                 }
-                self?.isLoading.value = false
             }
     }
     

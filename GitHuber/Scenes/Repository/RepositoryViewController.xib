@@ -26,35 +26,38 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="redraw" axis="vertical" distribution="fillEqually" alignment="bottom" spacing="53" translatesAutoresizingMaskIntoConstraints="NO" id="01S-aY-S0b">
-                    <rect key="frame" x="30" y="133" width="354" height="699"/>
+                <stackView opaque="NO" contentMode="redraw" axis="vertical" distribution="fillProportionally" alignment="bottom" spacing="53" translatesAutoresizingMaskIntoConstraints="NO" id="01S-aY-S0b">
+                    <rect key="frame" x="30" y="345.5" width="354" height="486.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Owner" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tju-Od-dOQ">
-                            <rect key="frame" x="0.0" y="0.0" width="354" height="72.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="354" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repository description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bf-vW-Thd">
-                            <rect key="frame" x="0.0" y="125.5" width="354" height="72"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Repository description" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bf-vW-Thd">
+                            <rect key="frame" x="0.0" y="73.5" width="354" height="100"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="gub-zT-Mmm"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number of stars" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5K-hp-AXk">
-                            <rect key="frame" x="0.0" y="250.5" width="354" height="72.5"/>
+                            <rect key="frame" x="0.0" y="226.5" width="354" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Language: " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuf-KK-kRE">
-                            <rect key="frame" x="0.0" y="376" width="354" height="72.5"/>
+                            <rect key="frame" x="0.0" y="300" width="354" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Lj-bA-t28">
-                            <rect key="frame" x="0.0" y="501.5" width="354" height="72"/>
+                            <rect key="frame" x="0.0" y="373.5" width="354" height="30"/>
                             <color key="backgroundColor" systemColor="systemBlueColor"/>
                             <color key="tintColor" systemColor="systemBlueColor"/>
                             <state key="normal" title="Star this repository">
@@ -65,7 +68,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oze-MV-wmW">
-                            <rect key="frame" x="0.0" y="626.5" width="354" height="72.5"/>
+                            <rect key="frame" x="0.0" y="456.5" width="354" height="30"/>
                             <color key="backgroundColor" systemColor="systemBlueColor"/>
                             <state key="normal" title="Contributors">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -85,7 +88,7 @@
                     </constraints>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RepositoryName" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lu9-GG-It1">
-                    <rect key="frame" x="30" y="74" width="354" height="29"/>
+                    <rect key="frame" x="30" y="74" width="354" height="241.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>

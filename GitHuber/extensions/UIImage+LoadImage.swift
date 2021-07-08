@@ -1,9 +1,3 @@
-//
-//  UIImage+LoadImage.swift
-//  GitHuber
-//
-//  Created by Lukas Adomavicius on 6/28/21.
-//
 
 import UIKit
 

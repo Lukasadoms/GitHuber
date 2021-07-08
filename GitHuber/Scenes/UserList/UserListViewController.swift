@@ -9,10 +9,13 @@ import UIKit
 
 class UserListViewController: UIViewController {
     
+    // MARK: Properties
+    
     private let viewModel: UserListViewModel
     weak var coordinator: MainCoordinator?
-    
     @IBOutlet weak var userListTableView: UITableView!
+    
+    // MARK: LifeCycle
     
     init(viewModel: UserListViewModel) {
         self.viewModel = viewModel
@@ -30,6 +33,8 @@ class UserListViewController: UIViewController {
         setupTableView()
         setupView()
     }
+    
+    // MARK: UI Setup
     
     func setupView() {
         navigationController?.setNavigationBarHidden(false, animated: true)
@@ -65,6 +70,8 @@ class UserListViewController: UIViewController {
         userListTableView.delegate = self
     }
 }
+
+// MARK: UITableViewMethods
 
 extension UserListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
