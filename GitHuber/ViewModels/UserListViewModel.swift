@@ -7,15 +7,11 @@
 
 import UIKit
 
-struct UserListCellModel {
-    var user: User
-    var followerCount: Int?
-}
-
 class UserListViewModel {
     
     var isLoading = Observable<Bool>(false)
-    var userList = Observable<[UserListCellModel]>([])
+    var userList = Observable<[User]>([])
+    var users: [User]?
     var onShowLogin: (() -> Void)?
     
     enum UserlListType {
@@ -37,7 +33,6 @@ class UserListViewModel {
     
     private let user: User?
     private let type: UserlListType?
-    private let users: [User]?
     
     init(user: User?, type: UserlListType?, users: [User]?) {
         self.user = user
@@ -50,17 +45,15 @@ class UserListViewModel {
             getUserListFromAPI(user: user, type: type)
         }
         else {
-            loadUserListFromMemory()
+            loadUsers()
         }
     }
     
-    private func loadUserListFromMemory() {
+    private func loadUsers() {
         guard let users = users else { return }
         for user in users {
-            var userCellModel = UserListCellModel(user: user)
             getUserInfo(user: user) { completion in
-                userCellModel.followerCount = completion.followers
-                self.userList.value.append(userCellModel)
+                self.userList.value.append(completion)
             }
         }
     }
@@ -74,10 +67,8 @@ class UserListViewModel {
                 switch result {
                 case .success(let response):
                     for user in response.object {
-                        var userCellModel = UserListCellModel(user: user)
                         self?.getUserInfo(user: user) { completion in
-                            userCellModel.followerCount = completion.followers
-                            self?.userList.value.append(userCellModel)
+                            self?.userList.value.append(completion)
                         }
                     }
                 case .failure(let error):

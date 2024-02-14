@@ -10,7 +10,7 @@ import Foundation
 class SearchViewModel {
     
     var isLoading = Observable<Bool>(false)
-    var userList = Observable<[UserListCellModel]>([])
+    let users = Observable<[User]?>([])
     let repositories = Observable<[Repository]?>(nil)
     var onShowLogin: (() -> Void)?
     
@@ -30,14 +30,8 @@ class SearchViewModel {
                 switch result {
                 case .success(let response):
                     guard let users = response.object.items else { return }
-                    self?.userList.value = []
-                    for user in users {
-                        var userCellModel = UserListCellModel(user: user)
-                        self?.getUserInfo(user: user) { completion in
-                            userCellModel.followerCount = completion.followers
-                            self?.userList.value.append(userCellModel)
-                        }
-                    }
+                    self?.users.value = users
+                    
                 case .failure(let error):
                     switch error {
                     case .authenticationError:
@@ -46,8 +40,9 @@ class SearchViewModel {
                         print("failed to search users, error: \(error)")
                     }
                 }
-                self?.isLoading.value = false
+                
             }
+        self.isLoading.value = false
     }
     
     private func getUserInfo(user: User, completion: @escaping (User) -> ()) {
@@ -55,7 +50,7 @@ class SearchViewModel {
             .RequestType
             .getUser(username: user.login)
             .networkRequest()?
-            .start(responseType: User.self) { [ weak self ]result in
+            .start(responseType: User.self) { [weak self] result in
                 switch result {
                 case .success(let response):
                     completion(response.object)
@@ -95,7 +90,8 @@ class SearchViewModel {
                         print("failed to search repositories, error: \(error)")
                     }
                 }
-                self?.isLoading.value = false
+                
             }
+       self.isLoading.value = false
     }
 }

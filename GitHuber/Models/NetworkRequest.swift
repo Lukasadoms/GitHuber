@@ -173,7 +173,6 @@ struct NetworkRequest {
             }
             
             if T.self == String.self, let responseString = String(data: data, encoding: .utf8) {
-                print(responseString)
                 let components = responseString.components(separatedBy: "&")
                 var dictionary: [String: String] = [:]
                 for component in components {
@@ -182,7 +181,6 @@ struct NetworkRequest {
                         dictionary[key] = value
                     }
                 }
-                print(dictionary)
                 DispatchQueue.main.async {
                     UserManager.accessToken = dictionary["access_token"]
                     UserManager.refreshToken = dictionary["refresh_token"]

@@ -56,7 +56,7 @@ class SearchViewController: UIViewController {
     // MARK: UI Setup
     
     func bindViewModel() {
-        viewModel.userList.bind { [weak self] userList in
+        viewModel.users.bind { [weak self] userList in
             self?.resultsTableView.reloadData()
         }
         
@@ -109,9 +109,8 @@ class SearchViewController: UIViewController {
     
     
     func getUserList() {
-        guard let text = searchBar.text else { return }
         viewModel.searchForUsers(
-            username: text,
+            username: searchBar.text ?? "",
             minFollowers: minFollowersTextField.text,
             minRepositories: minRepositpriesTextField.text,
             sortedBy: UserSortStrings[usersSortPicker.selectedSegmentIndex]
@@ -119,13 +118,9 @@ class SearchViewController: UIViewController {
     }
     
     func getRepositoryList() {
-        guard let
-                searchBarText = searchBar.text,
-                searchBarText != ""
-        else { return }
-        
+    
         viewModel.searchForRepositories(
-            name: searchBarText,
+            name: searchBar.text ?? "",
             language: languageTextField.text,
             sortedBy: RepositorySortStrings[repositorySortPicker.selectedSegmentIndex]
         )
@@ -145,7 +140,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchModePicker.selectedSegmentIndex == 0 {
-            return viewModel.userList.value.count
+            return viewModel.users.value?.count ?? 0
         } else {
             guard let repositories = viewModel.repositories.value else { return 0 }
             return repositories.count
@@ -162,7 +157,7 @@ extension SearchViewController: UITableViewDataSource {
                 return cell
             }
 
-            let user = viewModel.userList.value[indexPath.row]
+            guard let user = viewModel.users.value?[indexPath.row] else { return cell }
             userListCell.configureCell(user: user)
 
             return userListCell
@@ -186,8 +181,8 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if searchModePicker.selectedSegmentIndex == 0 {
-            let user = viewModel.userList.value[indexPath.row]
-            coordinator?.startUserViewController(user: user.user)
+            guard let user = viewModel.users.value?[indexPath.row] else { return }
+            coordinator?.startUserViewController(user: user)
         } else {
             guard let repository = viewModel.repositories.value?[indexPath.row] else { return }
             coordinator?.startRepositoryViewController(repository: repository)
